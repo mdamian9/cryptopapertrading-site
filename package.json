@@ -1,0 +1,14 @@
+{
+  "name": "cryptopapertrading-site",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/mdamian9/cryptopapertrading-site.git",
+  "author": "mdamian9 <m.damian9@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.2"
+  }
+}
