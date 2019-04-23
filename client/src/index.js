@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import NewEntryTrade from './components/NewEntryTrade';
 import NewExitTrade from './components/NewExitTrade';
