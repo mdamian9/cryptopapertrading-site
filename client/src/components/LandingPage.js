@@ -1,4 +1,6 @@
 import React from 'react';
+import Login from './Login';
+import Signup from './Signup';
 import '../assets/css/LandingPage.css';
 
 const LandingPage = () => {
@@ -10,9 +12,8 @@ const LandingPage = () => {
                     risking real capital.
                 </h1>
                 <br />
-                <div>
-                    <button className="btn btn-primary">Login</button>&ensp;
-                    <button className="btn btn-secondary">Signup</button>
+                <div className="d-flex justify-content-center">
+                    <Login /> &ensp; or &ensp; <Signup />
                 </div>
             </div>
         </div>

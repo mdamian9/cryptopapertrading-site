@@ -12,9 +12,13 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <Router>
         <Route exact path="/" component={App} />
+        <Route exact path="/login" component={NewEntryTrade} />
+        <Route exact path="/signup" component={NewEntryTrade} />
         <Route exact path="/new-entry-trade" component={NewEntryTrade} />
         <Route exact path="/new-exit-trade" component={NewExitTrade} />
         <Route exact path ="/trade-log" component={TradeLog} />
+        <Route exact path="/user-entry-trades" component={NewEntryTrade} />
+        <Route exact path="/uer-exit-trades" component={NewExitTrade} />
     </Router>
     , document.getElementById('root')
 );
