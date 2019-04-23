@@ -1,27 +1,47 @@
 import React, { Component } from 'react';
 
 class Signup extends Component {
+
+    handleChange = event => {
+        // Extract name & value from event target and set to state
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        // Clear form fields
+        document.getElementById("signup-form").reset();
+        // Reset state
+        this.setState({
+            email: '',
+            password: ''
+        });
+    };
+
     render = () => {
         return (
             <div>
-                <form>
+                <form id="signup-form" onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
-                        <label htmlFor="email">Email:</label>&ensp;
+                        <label htmlFor="signup-email">Email:</label>&ensp;
                         <input className="form-control"
-                            placeholder="Enter your email..."
+                            placeholder="Enter your email"
                             name="email"
                             type="email"
-                            id="email"
+                            id="signup-email"
                             onChange={this.handleChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="pwd">Password:</label>&ensp;
+                        <label htmlFor="signup-pwd">Password:</label>&ensp;
                         <input className="form-control"
-                            placeholder="Create  your password..."
+                            placeholder="Create your password"
                             name="password"
                             type="password"
-                            id="pwd"
+                            id="signup-pwd"
                             onChange={this.handleChange}
                         />
                     </div>

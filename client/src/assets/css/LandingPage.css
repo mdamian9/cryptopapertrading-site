@@ -3,3 +3,11 @@
     width: 100%;
     color: white;
 }
+
+.form {
+    max-width: 40%;
+    border: solid white;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 10px;
+}
