@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.css';
 import App from './App';
 import UserHomePage from './components/UserHomePage';
 import NewEntryTrade from './components/NewEntryTrade';
