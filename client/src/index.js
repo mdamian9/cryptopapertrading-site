@@ -8,7 +8,7 @@ import App from './App';
 import UserHomePage from './components/UserHomePage';
 import NewEntryTrade from './components/NewEntryTrade';
 import NewExitTrade from './components/NewExitTrade';
-import TradeLog from './components/TradeLog';
+import TradeLogPage from './components/TradeLogPage';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -19,7 +19,7 @@ ReactDOM.render(
         <Route exact path="/home" component={UserHomePage} />
         <Route exact path="/new-entry-trade" component={NewEntryTrade} />
         <Route exact path="/new-exit-trade" component={NewExitTrade} />
-        <Route exact path="/trade-log" component={TradeLog} />
+        <Route exact path="/trade-log" component={TradeLogPage} />
         <Route exact path="/user-entry-trades" component={NewEntryTrade} />
         <Route exact path="/uer-exit-trades" component={NewExitTrade} />
     </Router>

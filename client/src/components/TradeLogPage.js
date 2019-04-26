@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavbarComponent from './Navbar';
 import UserEntryTrades from './UserEntryTrades';
 import UserExitTrades from './UserEntryTrades';
 
@@ -17,12 +18,15 @@ if (flag === "entries") {
     };
 };
 
-class TradeLog extends Component {
+class TradeLogPage extends Component {
     render = () => {
         return (
-            <Trades />
+            <div>
+                <NavbarComponent />
+                <Trades />
+            </div>
         );
     };
 };
 
-export default TradeLog;
+export default TradeLogPage;
