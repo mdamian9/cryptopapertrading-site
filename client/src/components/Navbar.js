@@ -36,7 +36,7 @@ class NavbarComponent extends Component {
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                    <NavItem>
+                        <NavItem>
                             <NavLink href="/home">Home</NavLink>
                         </NavItem>
                         <NavItem>
@@ -58,7 +58,7 @@ class NavbarComponent extends Component {
                                 </DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>
-                                    Log Out
+                                    <NavLink href="/">Log Out</NavLink>
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>

@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
 import App from './App';
 import UserHomePage from './components/UserHomePage';
+import NewTradePage from './components/NewTradePage';
 import NewEntryTrade from './components/NewEntryTrade';
 import NewExitTrade from './components/NewExitTrade';
 import TradeLogPage from './components/TradeLogPage';
@@ -17,6 +18,7 @@ ReactDOM.render(
         {/* <Route exact path="/login" component={NewEntryTrade} />
         <Route exact path="/signup" component={NewEntryTrade} /> */}
         <Route exact path="/home" component={UserHomePage} />
+        <Route exact path="/new-trade" component={NewTradePage} />
         <Route exact path="/new-entry-trade" component={NewEntryTrade} />
         <Route exact path="/new-exit-trade" component={NewExitTrade} />
         <Route exact path="/trade-log" component={TradeLogPage} />
