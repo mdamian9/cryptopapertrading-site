@@ -24,6 +24,7 @@ const LandingPage = () => {
                             Sign Up
                         </Button>
                     </div>
+                    <SignupForm />
                 </div>
             </div>
         </div>

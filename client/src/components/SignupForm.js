@@ -25,33 +25,21 @@ class SignupForm extends Component {
 
     render = () => {
         return (
-            <div>
-                <form id="signup-form" onSubmit={this.handleFormSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="signup-email">Email:</label>&ensp;
-                        <input className="form-control"
-                            placeholder="Enter your email"
-                            name="email"
-                            type="email"
-                            id="signup-email"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="signup-pwd">Password:</label>&ensp;
-                        <input className="form-control"
-                            placeholder="Create your password"
-                            name="password"
-                            type="password"
-                            id="signup-pwd"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <button className="btn btn-secondary">
-                        Sign Up
-                    </button>
-                </form>
-            </div>
+            <Form id="signup-form" onSubmit={this.handleFormSubmit}>
+                <FormGroup>
+                    <Label for="signup-email">Email:</Label>
+                    <Input type="email" name="email" id="signup-email"
+                        placeholder="Enter your email" onChange={this.handleChange}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="signup-password">Password:</Label>
+                    <Input type="password" name="password" id="signup-password"
+                        placeholder="Enter your password" onChange={this.handleChange}
+                    />
+                </FormGroup>
+                <Button color="primary">Submit</Button>
+            </Form>
         );
     };
 };
