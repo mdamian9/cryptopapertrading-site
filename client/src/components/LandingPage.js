@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React from 'react';
 import Login from './Login';
-import SignupForm from './SignupForm';
+import SignupModal from './SignupModal';
 import '../assets/css/LandingPage.css';
 
-class LandingPage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render = () => {
+const LandingPage = () => {
         return (
             <div>
                 <Login />
@@ -21,19 +15,16 @@ class LandingPage extends Component {
                         </h1>
                         <br />
                         <h3 className="text-center" style={{ maxWidth: '75%', margin: '0 auto', fontSize: '1.8vw' }}>
-                            Login or create a new account below!
+                            Login above or create a new account below!
                         </h3>
                         <br />
                         <div className="d-flex justify-content-center align-items-center">
-                            <Button color="primary">
-                                Sign Up
-                            </Button>
+                            <SignupModal />
                         </div>
                     </div>
                 </div>
             </div>
         );
     };
-};
 
 export default LandingPage;

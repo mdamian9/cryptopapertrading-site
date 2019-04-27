@@ -14,6 +14,7 @@ class SignupForm extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         // Clear form fields
+        console.log(`${this.state.email} ${this.state.password}`)
         document.getElementById("signup-form").reset();
         // Reset state
         this.setState({
@@ -37,7 +38,7 @@ class SignupForm extends Component {
                         placeholder="Enter your password" onChange={this.handleChange}
                     />
                 </FormGroup>
-                <Button color="primary">Submit</Button>
+                <Button color="primary">Sign Up</Button>
             </Form>
         );
     };

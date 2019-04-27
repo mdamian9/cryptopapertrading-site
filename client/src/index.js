@@ -5,6 +5,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
 import App from './App';
+import LoginPage from './components/LoginPage.js';
 import UserHomePage from './components/UserHomePage';
 import NewTradePage from './components/NewTradePage';
 import NewEntryTrade from './components/NewEntryTrade';
@@ -15,6 +16,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <Router>
         <Route exact path="/" component={App} />
+        <Route exact path="/login" component={LoginPage} />
         {/* <Route exact path="/login" component={NewEntryTrade} />
         <Route exact path="/signup" component={NewEntryTrade} /> */}
         <Route exact path="/home" component={UserHomePage} />
