@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-class Signup extends Component {
+
+class SignupForm extends Component {
 
     handleChange = event => {
         // Extract name & value from event target and set to state
@@ -54,4 +56,4 @@ class Signup extends Component {
     };
 };
 
-export default Signup;
+export default SignupForm;

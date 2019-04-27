@@ -1,6 +1,7 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 import Login from './Login';
-import Signup from './Signup';
+import SignupForm from './SignupForm';
 import '../assets/css/LandingPage.css';
 
 const LandingPage = () => {
@@ -19,9 +20,9 @@ const LandingPage = () => {
                     </h3>
                     <br />
                     <div className="d-flex justify-content-center align-items-center">
-                        <button className="btn btn-primary">
+                        <Button color="primary">
                             Sign Up
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

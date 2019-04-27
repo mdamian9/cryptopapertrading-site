@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Navbar } from 'reactstrap';
 
 class Login extends Component {
 
@@ -24,44 +24,27 @@ class Login extends Component {
 
     render = () => {
         return (
-            <Form inline>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    <Label for="login-email" className="mr-sm-2">Email:</Label>
-                    <Input type="email" name="email" id="login-email" placeholder="Enter your email" />
-                </FormGroup>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    <Label for="login-password" className="mr-sm-2">Password:</Label>
-                    <Input type="password" name="password" id="login-password" placeholder="Enter your password" />
-                </FormGroup>
-                <Button>Log In</Button>
-            </Form>
-            // <div>
-            //     <form id="login-form" onSubmit={this.handleFormSubmit}>
-            //         <div className="form-group">
-            //             <label htmlFor="login-email">Email:</label>&ensp;
-            //             <input className="form-control"
-            //                 placeholder="Enter your email"
-            //                 name="email"
-            //                 type="email"
-            //                 id="login-email"
-            //                 onChange={this.handleChange}
-            //             />
-            //         </div>
-            //         <div className="form-group">
-            //             <label htmlFor="login-pwd">Password:</label>&ensp;
-            //             <input className="form-control"
-            //                 placeholder="Enter your password"
-            //                 name="password"
-            //                 type="password"
-            //                 id="login-pwd"
-            //                 onChange={this.handleChange}
-            //             />
-            //         </div>
-            //         <button className="btn btn-primary">
-            //             Log In
-            //         </button>
-            //     </form>
-            // </div>
+            <Navbar color="light" light expand="md">
+                <Form inline id="login-form" onSubmit={this.handleFormSubmit}>
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Label for="login-email" className="mr-sm-2">Email:</Label>
+                        <Input type="email"
+                            name="email" id="login-email"
+                            placeholder="Enter your email"
+                            onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Label for="login-password" className="mr-sm-2">Password:</Label>
+                        <Input type="password"
+                            name="password" id="login-password"
+                            placeholder="Enter your password"
+                            onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                    <Button>Log In</Button>
+                </Form>
+            </Navbar>
         );
     };
 };
