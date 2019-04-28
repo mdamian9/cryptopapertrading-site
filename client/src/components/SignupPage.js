@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
-const LoginPage = () => {
+const SignupPage = () => {
     return (
         <div className="full-div d-flex align-items-center text-white">
-            <div className="mx-auto" style={{width: '30%'}}>
+            <div className="mx-auto" style={{ width: '30%' }}>
                 <Container style={{ width: '100%' }}>
                     <Row>
                         <Col>
-                            <h1 className="text-center" style={{ fontSize: '4vh' }}>Log in to your account</h1>
+                            <h1 className="text-center" style={{ fontSize: '4vh' }}>Create a new account</h1>
                             <hr />
-                            <LoginForm />
+                            <SignupForm />
                             <hr />
                             <p className="text-center">
-                                Don't have an account? Sign up <Link to="/signup">here</Link>
+                                Already have an account? Log in <Link to="/login">here</Link>
                             </p>
                         </Col>
                     </Row>
@@ -25,4 +25,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default SignupPage;
