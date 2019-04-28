@@ -1,13 +1,12 @@
 import React from 'react';
 import Login from './Login';
 import SignupModal from './SignupModal';
-import '../assets/css/LandingPage.css';
 
 const LandingPage = () => {
         return (
             <div>
                 <Login />
-                <div className="welcome d-flex align-items-center">
+                <div className="div-90vh d-flex align-items-center text-white">
                     <div className="mx-auto">
                         <h1 className="text-center" style={{ maxWidth: '75%', margin: '0 auto', fontSize: '4vh' }}>
                             Welcome to cryptopapertrading.com, where you can practice trading cryptocurrencies without
