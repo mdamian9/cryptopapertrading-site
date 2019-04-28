@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Logo from './Logo';
 import {
     Collapse,
     Navbar,
@@ -32,7 +33,7 @@ class NavbarComponent extends Component {
     render() {
         return (
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/home"><img src="btc_logo.png" alt="btc_logo" height="30" width="30" />&ensp;Crypto Paper Trading</NavbarBrand>
+                <NavbarBrand href="/home"><Logo /></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>

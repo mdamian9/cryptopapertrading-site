@@ -9,12 +9,12 @@ const LandingPage = () => {
                 <Login />
                 <div className="welcome d-flex align-items-center">
                     <div className="mx-auto">
-                        <h1 className="text-center" style={{ maxWidth: '75%', margin: '0 auto', fontSize: '2.5vw' }}>
+                        <h1 className="text-center" style={{ maxWidth: '75%', margin: '0 auto', fontSize: '4vh' }}>
                             Welcome to cryptopapertrading.com, where you can practice trading cryptocurrencies without
                             risking real capital.
                         </h1>
                         <br />
-                        <h3 className="text-center" style={{ maxWidth: '75%', margin: '0 auto', fontSize: '1.8vw' }}>
+                        <h3 className="text-center" style={{ maxWidth: '75%', margin: '0 auto', fontSize: '2.75vh' }}>
                             Login above or create a new account below!
                         </h3>
                         <br />

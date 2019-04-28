@@ -14,12 +14,13 @@ class UserHomePage extends Component {
                             Welcome User!
                         </Col>
                         <Col xs={{ size: 4, offset: 1 }}>
-                            <Row className="w-outline" >
+                            <Row className="w-outline text-center" >
                                 <Col>
                                     Tweets Hashtaged #cryptocurrency
                                 </Col>
                             </Row>
-                            <Row className="w-outline">
+                            <br />
+                            <Row className="w-outline text-center">
                                 <Col>
                                     Tweets Hashtaged #bitcoin
                                 </Col>
