@@ -1,20 +1,13 @@
 import React from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
+import LogoNavbar from './LogoNavbar';
 import SignupForm from './SignupForm';
-import Logo from './Logo';
 
 const SignupPage = () => {
     return (
         <div>
-            <div className="centered-nav text-center">
-                <Navbar color="light" light expand="md">
-                    <NavbarBrand>
-                        <Logo />
-                    </NavbarBrand>
-                </Navbar>
-            </div>
+            <LogoNavbar />
             <div className="div-90vh d-flex align-items-center text-white">
                 <div className="mx-auto" style={{ width: '30%' }}>
                     <Container style={{ width: '100%' }}>
