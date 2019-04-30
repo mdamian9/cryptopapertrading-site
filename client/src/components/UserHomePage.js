@@ -10,21 +10,18 @@ class UserHomePage extends Component {
                 <NavbarComponent />
                 <Container style={{ marginTop: '10px' }}>
                     <Row>
-                        <Col xs='7' className="w-outline text-center">
+                        <Col xs='12' className="w-outline text-center">
                             Welcome User!
                         </Col>
-                        <Col xs={{ size: 4, offset: 1 }}>
-                            <Row className="w-outline text-center" >
-                                <Col>
-                                    Tweets Hashtaged #cryptocurrency
-                                </Col>
-                            </Row>
-                            <br />
-                            <Row className="w-outline text-center">
-                                <Col>
-                                    Tweets Hashtaged #bitcoin
-                                </Col>
-                            </Row>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col xs={{size: 5, offset: 1}} className="w-outline">
+                            Tweets Hashtaged #cryptocurrency
+                        </Col>
+                        &ensp;
+                        <Col xs='5' className="w-outline">
+                            Tweets Hashtaged #bitcoin
                         </Col>
                     </Row>
                 </Container>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Navbar } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Navbar, NavbarBrand, Nav } from 'reactstrap';
+import Logo from './Logo';
 
 class Login extends Component {
 
@@ -25,25 +26,30 @@ class Login extends Component {
     render = () => {
         return (
             <Navbar color="light" light expand="md">
-                <Form inline id="login-form" onSubmit={this.handleFormSubmit}>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="login-email" className="mr-sm-2">Email:</Label>
-                        <Input type="email"
-                            name="email" id="login-email"
-                            placeholder="Enter your email"
-                            onChange={this.handleChange}
-                        />
-                    </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="login-password" className="mr-sm-2">Password:</Label>
-                        <Input type="password"
-                            name="password" id="login-password"
-                            placeholder="Enter your password"
-                            onChange={this.handleChange}
-                        />
-                    </FormGroup>
-                    <Button>Log In</Button>
-                </Form>
+                    <NavbarBrand href="/">
+                        <Logo />
+                    </NavbarBrand>
+                <Nav className="ml-auto" navbar>
+                    <Form inline id="login-form" onSubmit={this.handleFormSubmit}>
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Label for="login-email" className="mr-sm-2">Email:</Label>
+                            <Input type="email"
+                                name="email" id="login-email"
+                                placeholder="Enter your email"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Label for="login-password" className="mr-sm-2">Password:</Label>
+                            <Input type="password"
+                                name="password" id="login-password"
+                                placeholder="Enter your password"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+                        <Button>Log In</Button>
+                    </Form>
+                </Nav>
             </Navbar>
         );
     };
