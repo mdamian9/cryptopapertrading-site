@@ -41,18 +41,28 @@ class NavbarComponent extends Component {
                             <NavLink href="/home">Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/new-trade">New Trade</NavLink>
-                        </NavItem>
-                        <NavItem>
                             <NavLink href="/trade-log">Trade Log</NavLink>
                         </NavItem>
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>
+                                New Trade
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem>
+                                    New Entry Trade
+                                </DropdownItem>
+                                <DropdownItem>
+                                    New Exit Trade
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 Menu
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem>
-                                    Trade Log
+                                    Tutorial
                                 </DropdownItem>
                                 <DropdownItem>
                                     My Account
