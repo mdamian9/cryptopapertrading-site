@@ -14,7 +14,6 @@ class LoginForm extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         // Clear form fields
-        console.log(`${this.state.email} ${this.state.password}`)
         document.getElementById("signup-form").reset();
         // Reset state
         this.setState({

@@ -19,9 +19,9 @@ class UserHomePage extends Component {
                             </Row>
                             <br />
                             <Row className="justify-content-center">
-                                <Col xs="2"><Button color="success">New Entry Trade</Button></Col>
-                                <Col xs="2"><Button color="danger">New Exit Trade</Button></Col>
-                                <Col xs="2"><Button color="primary">Trade Log</Button></Col>
+                                <Col xs="2"><Button color="success" href="/new-entry-trade">New Entry Trade</Button></Col>
+                                <Col xs="2"><Button color="danger" href="/new-exit-trade">New Exit Trade</Button></Col>
+                                <Col xs="2"><Button color="primary" href="/trade-log">Trade Log</Button></Col>
                             </Row>
                             <br />
                         </Col>

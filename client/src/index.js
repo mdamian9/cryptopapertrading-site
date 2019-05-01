@@ -8,9 +8,11 @@ import App from './App';
 import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage.js';
 import UserHomePage from './components/UserHomePage';
-import NewEntryTrade from './components/NewEntryTrade';
-import NewExitTrade from './components/NewExitTrade';
+import NewEntryTradePage from './components/NewEntryTradePage';
+import NewExitTradePage from './components/NewExitTradePage';
 import TradeLogPage from './components/TradeLogPage';
+import UserEntryTrades from './components/UserEntryTrades';
+import UserExitTrades from './components/UserExitTrades';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -18,14 +20,12 @@ ReactDOM.render(
         <Route exact path="/" component={App} />
         <Route exact path="/signup" component={SignupPage} />
         <Route exact path="/login" component={LoginPage} />
-        {/* <Route exact path="/login" component={NewEntryTrade} />
-        <Route exact path="/signup" component={NewEntryTrade} /> */}
         <Route exact path="/home" component={UserHomePage} />
-        <Route exact path="/new-entry-trade" component={NewEntryTrade} />
-        <Route exact path="/new-exit-trade" component={NewExitTrade} />
+        <Route exact path="/new-entry-trade" component={NewEntryTradePage} />
+        <Route exact path="/new-exit-trade" component={NewExitTradePage} />
         <Route exact path="/trade-log" component={TradeLogPage} />
-        <Route exact path="/user-entry-trades" component={NewEntryTrade} />
-        <Route exact path="/uer-exit-trades" component={NewExitTrade} />
+        <Route exact path="/user-entry-trades" component={UserEntryTrades} />
+        <Route exact path="/user-exit-trades" component={UserExitTrades} />
     </Router>
     , document.getElementById('root')
 );
