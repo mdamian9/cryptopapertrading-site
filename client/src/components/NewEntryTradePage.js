@@ -9,21 +9,21 @@ class NewEntryTradePage extends Component {
             <div>
                 <Navbar />
                 <br />
-                <Container>
+                <Container className="text-white w-outline">
+                    <br />
                     <Row>
                         <Col>
-                            <h1 className="text-center" style={{ color: 'white', fontSize: '4vh' }}>
+                            <h1 className="text-center" style={{fontSize: '4vh' }}>
                                 New Entry Trade
                             </h1>
                         </Col>
                     </Row>
-                </Container>
-                <Container className="text-white">
                     <Row className="justify-content-center">
                         <Col xs="6">
                             <NewEntryTradeForm />
                         </Col>
                     </Row>
+                    <br />
                 </Container>
             </div>
         );
