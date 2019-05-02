@@ -9,8 +9,8 @@ class NewEntryTradeForm extends Component {
             exchangeName: '-- select exchange --',
             tradingPair: '-- select trading pair --',
             totalInvestment: '',
-            altName: '',
-            altPrice: ''
+            coinName: '',
+            coinBuyPrice: ''
         };
     };
 
@@ -26,20 +26,20 @@ class NewEntryTradeForm extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         // Clear form fields
-        console.log(`Submitted:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.totalInvestment} ${this.state.altName} ${this.state.altPrice}`);
+        console.log(`Submitted:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.totalInvestment} ${this.state.coinName} ${this.state.coinBuyPrice}`);
         document.getElementById("new-entry-form").reset();
         // Reset state
         this.setState({
             exchangeName: '-- select exchange --',
             tradingPair: '-- select trading pair --',
             totalInvestment: '',
-            altName: '',
-            altPrice: ''
+            coinName: '',
+            coinBuyPrice: ''
         });
     };
 
     render = () => {
-        console.log(`Rendered:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.totalInvestment} ${this.state.altName} ${this.state.altPrice}`);
+        console.log(`Rendered:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.totalInvestment} ${this.state.coinName} ${this.state.coinBuyPrice}`);
         return (
             <Form id="new-entry-form" onSubmit={this.handleFormSubmit}>
                 <FormGroup>
@@ -70,14 +70,14 @@ class NewEntryTradeForm extends Component {
                         placeholder="Enter total investment" onChange={this.handleChange}/>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="alt-name">Altcoin name:</Label>
-                    <Input type="text" name="altName" id="alt-name"
-                        placeholder="Enter name of altcoin bought" onChange={this.handleChange}/>
+                    <Label for="coin-name">Coin name:</Label>
+                    <Input type="text" name="coinName" id="coin-name"
+                        placeholder="Enter name of coin bought" onChange={this.handleChange}/>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="alt-price">Altcoin price:</Label>
-                    <Input type="text" name="altPrice" id="alt-price"
-                        placeholder="Enter price of altcoin" onChange={this.handleChange}/>
+                    <Label for="coin-buy-price">Coin price:</Label>
+                    <Input type="text" name="coinBuyPrice" id="coin-buy-price"
+                        placeholder="Enter price coin was bought" onChange={this.handleChange}/>
                 </FormGroup>
                 <Button color="primary">Submit</Button>
             </Form>

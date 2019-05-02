@@ -49,10 +49,14 @@ class NavbarComponent extends Component {
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem>
-                                    New Entry Trade
+                                    <NavLink href="/new-entry-trade">
+                                        New Entry Trade
+                                    </NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    New Exit Trade
+                                    <NavLink href="/new-exit-trade">
+                                        New Exit Trade
+                                    </NavLink>
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>

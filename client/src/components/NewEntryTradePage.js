@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Navbar from './Navbar';
 import NewEntryTradeForm from './NewEntryTradeForm';
 
-class NewEntryTradePage extends Component {
-    render = () => {
-        return (
-            <div>
-                <Navbar />
-                <br />
-                <Container className="text-white w-outline">
+const NewEntryTradePage = () => {
+    return (
+        <div>
+            <Navbar />
+            <div className="div-90vh d-flex align-items-center text-white">
+                <Container className="w-outline">
                     <br />
                     <Row>
                         <Col>
-                            <h1 className="text-center" style={{fontSize: '4vh' }}>
+                            <h1 className="text-center" style={{ fontSize: '4vh' }}>
                                 New Entry Trade
                             </h1>
                         </Col>
@@ -26,8 +25,8 @@ class NewEntryTradePage extends Component {
                     <br />
                 </Container>
             </div>
-        );
-    };
+        </div>
+    );
 };
 
 export default NewEntryTradePage;
