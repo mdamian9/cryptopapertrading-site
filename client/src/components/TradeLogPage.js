@@ -9,7 +9,7 @@ const TradeLogPage = () => {
         <div>
             <NavbarComponent />
             <br />
-            <Container className="text-white" style={{ width: "100%" }}>
+            <Container className="text-white">
                 <Row className="justify-content-center">
                     <Col className="w-outline">
                             <UserEntryTrades />
