@@ -9,7 +9,10 @@ router.get('/entry-trades', (req, res) => {
 });
 
 router.post('/entry-trades', (req, res) => {
-    res.send(req.body);
+    const newEntryTrade = req.body;
+    db_EntryTrades.create(newEntryTrade).then(trade => {
+        res.send(`Created new entry trade: ${trade}`);
+    });
 });
 
 router.put('/entry-trades', (req, res) => {

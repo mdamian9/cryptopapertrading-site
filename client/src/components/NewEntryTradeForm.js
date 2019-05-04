@@ -20,7 +20,6 @@ class NewEntryTradeForm extends Component {
 
     handleChange = event => {
         // Extract name & value from event target and set to state
-        console.log(event.target.name);
         const { name, value } = event.target;
         this.setState({
             [name]: value
@@ -28,7 +27,6 @@ class NewEntryTradeForm extends Component {
     };
 
     handleFormSubmit = event => {
-        console.log(event.target);
         event.preventDefault();
 
         //========================================================================
