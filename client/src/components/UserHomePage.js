@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Container, Row, Col } from 'reactstrap';
 import NavbarComponent from './Navbar';
-import '../assets/css/UserHomePage.css';
 
 class UserHomePage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            cryptoTweets: [],
+            bitcoinTweets: []
+        };
+    };
+
     render = () => {
         return (
             <div style={{ color: 'white' }} className="full-div">

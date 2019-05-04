@@ -1,32 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import NavbarComponent from './Navbar';
 import UserEntryTrades from './UserEntryTrades';
-import UserExitTrades from './UserEntryTrades';
+import UserExitTrades from './UserExitTrades';
 
-let flag;
-let Trades;
-
-if (flag === "entries") {
-    Trades = UserEntryTrades;
-} else if (flag === "exits") {
-    Trades = UserExitTrades;
-} else {
-    Trades = () => {
-        return (
-            <div>Empty Trades</div>
-        );
-    };
-};
-
-class TradeLogPage extends Component {
-    render = () => {
-        return (
-            <div>
-                <NavbarComponent />
-                <Trades />
-            </div>
-        );
-    };
+const TradeLogPage = () => {
+    return (
+        <div>
+            <NavbarComponent />
+            <br />
+            <Container className="text-white" style={{ width: "100%" }}>
+                <Row className="justify-content-center">
+                    <Col className="w-outline">
+                            <UserEntryTrades />
+                    </Col>
+                    <Col className="w-outline" >
+                        <UserExitTrades />
+                    </Col>
+                </Row>
+            </Container>
+        </div>
+    );
 };
 
 export default TradeLogPage;
