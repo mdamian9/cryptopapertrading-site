@@ -8,10 +8,12 @@ class UserEntryTrades extends Component {
                 <h1 className="text-center" style={{ margin: "15px", fontSize: "4.5vh" }}>
                     Entry Trades
                 </h1>
+                <hr />
                 <Table dark striped>
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Exchange</th>
                             <th>Coin Name</th>
                             <th>Total Investment</th>
                             <th>Buy Price</th>
@@ -22,6 +24,7 @@ class UserEntryTrades extends Component {
                     <tbody>
                         <tr>
                             <th scope="row">05/12/19</th>
+                            <td>Binance</td>
                             <td>TRX/BTC</td>
                             <td>0.015030000 BTC</td>
                             <td>0.00000120 BTC</td>
@@ -30,6 +33,7 @@ class UserEntryTrades extends Component {
                         </tr>
                         <tr>
                             <th scope="row">05/13/19</th>
+                            <td>Binance</td>
                             <td>ETH/BTC</td>
                             <td>0.35756005 BTC</td>
                             <td>0.02851025 BTC</td>
@@ -38,6 +42,7 @@ class UserEntryTrades extends Component {
                         </tr>
                         <tr>
                             <th scope="row">05/14/19</th>
+                            <td>Binance</td>
                             <td>ADA/BTC</td>
                             <td>0.23050000 BTC</td>
                             <td>0.00000986 BTC</td>

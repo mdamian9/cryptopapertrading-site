@@ -10,9 +10,8 @@ import LoginPage from './components/LoginPage.js';
 import UserHomePage from './components/UserHomePage';
 import NewEntryTradePage from './components/NewEntryTradePage';
 import NewExitTradePage from './components/NewExitTradePage';
-import TradeLogPage from './components/TradeLogPage';
-import UserEntryTrades from './components/UserEntryTrades';
-import UserExitTrades from './components/UserExitTrades';
+import EntryTradeLogPage from './components/EntryTradeLogPage';
+import ExitTradeLogPage from './components/ExitTradeLogPage';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -23,9 +22,8 @@ ReactDOM.render(
         <Route exact path="/home" component={UserHomePage} />
         <Route exact path="/new-entry-trade" component={NewEntryTradePage} />
         <Route exact path="/new-exit-trade" component={NewExitTradePage} />
-        <Route exact path="/trade-log" component={TradeLogPage} />
-        <Route exact path="/user-entry-trades" component={UserEntryTrades} />
-        <Route exact path="/user-exit-trades" component={UserExitTrades} />
+        <Route exact path="/entry-trades" component={EntryTradeLogPage} />
+        <Route exact path="/exit-trades" component={ExitTradeLogPage} />
     </Router>
     , document.getElementById('root')
 );
