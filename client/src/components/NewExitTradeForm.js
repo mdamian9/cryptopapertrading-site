@@ -12,6 +12,8 @@ class NewEntryTradeForm extends Component {
             numCoinsSold: '',
             coinSellPrice: ''
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     };
 
     handleChange = event => {
@@ -25,9 +27,9 @@ class NewEntryTradeForm extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        // Clear form fields
         console.log(`Submitted:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.coinName} ${this.state.numCoinsSold} ${this.state.coinSellPrice}`);
-        document.getElementById("new-exit-form").reset();
+        // Clear form fields
+        event.target.reset();
         // Reset state
         this.setState({
             exchangeName: '-- select exchange --',
@@ -41,7 +43,7 @@ class NewEntryTradeForm extends Component {
     render = () => {
         console.log(`Rendered:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.coinName} ${this.state.numCoinsSold} ${this.state.coinSellPrice}`);
         return (
-            <Form id="new-exit-form" onSubmit={this.handleFormSubmit}>
+            <Form onSubmit={this.handleFormSubmit}>
                 <FormGroup>
                     <Label for="exchange-name">Exchange:</Label>
                     <Input type="select" name="exchangeName" id="exchange-name"

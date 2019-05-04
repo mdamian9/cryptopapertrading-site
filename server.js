@@ -14,6 +14,7 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }).then(() => { console.log("Con
 
 // Initialize API routes
 const indexRouter = require("./routes/index");
+const entryTradesRouter = require("./routes/entryTrades");
 
 // Log all requests to the console
 app.use(logger('dev'));
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 
 // Use API routes
 app.use("/", indexRouter);
+app.use("/", entryTradesRouter);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

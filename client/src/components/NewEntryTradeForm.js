@@ -14,6 +14,8 @@ class NewEntryTradeForm extends Component {
             coinName: '',
             coinBuyPrice: ''
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     };
 
     handleChange = event => {
@@ -26,26 +28,40 @@ class NewEntryTradeForm extends Component {
     };
 
     handleFormSubmit = event => {
+        console.log(event.target);
         event.preventDefault();
-        // Clear form fields
-        console.log(`Submitted:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.totalInvestment} ${this.state.coinName} ${this.state.coinBuyPrice}`);
+
+        //========================================================================
+
+        let tradeFee = 0;
+        if (this.state.exchangeName === 'Binance') {
+            tradeFee = .001;
+        } else if (this.state.exchangeName === 'Coinbase') {
+            tradeFee = .04;
+        };
+
+        const totalCoins = (parseFloat(this.state.totalInvestment) - (parseFloat(this.state.totalInvestment) * tradeFee)) / parseFloat(this.state.coinBuyPrice);
+        const finalEntryPrice = parseFloat(this.state.totalInvestment) / totalCoins;
 
         axios.post('/entry-trades', {
-            exchange: '',
-            tradingPair: '',
-            totalInvestment: '',
-            coinName: '',
-            coinBuyPrice: '',
-            totalCoins: '',
-            finalEntryPrice: '',
-            dateLogged: ''
+            exchange: this.state.exchangeName,
+            tradingPair: this.state.tradingPair,
+            totalInvestment: parseFloat(this.state.totalInvestment),
+            coinName: this.state.coinName,
+            coinBuyPrice: parseFloat(this.state.coinBuyPrice),
+            totalCoins: totalCoins.toFixed(8),
+            finalEntryPrice: finalEntryPrice.toFixed(8),
+            dateLogged: moment().format('MMMM Do YYYY, h:mm:ss a')
         }).then(response => {
-            console.log(response);
+            console.log(response.data);
         }).catch(error => {
             console.log(error);
         });
 
-        document.getElementById("new-entry-form").reset();
+        //========================================================================
+
+        // Clear form fields
+        event.target.reset();
         // Reset state
         this.setState({
             exchangeName: '-- select exchange --',
@@ -57,9 +73,8 @@ class NewEntryTradeForm extends Component {
     };
 
     render = () => {
-        console.log(`Rendered:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.totalInvestment} ${this.state.coinName} ${this.state.coinBuyPrice}`);
         return (
-            <Form id="new-entry-form" onSubmit={this.handleFormSubmit}>
+            <Form onSubmit={this.handleFormSubmit}>
                 <FormGroup>
                     <Label for="exchange-name">Exchange:</Label>
                     <Input type="select" name="exchangeName" id="exchange-name"
