@@ -42,23 +42,6 @@ class NavbarComponent extends Component {
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
-                                Trade Log
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                                <DropdownItem>
-                                    <NavLink href="/entry-trades">
-                                        Entry Trades
-                                    </NavLink>
-                                </DropdownItem>
-                                <DropdownItem>
-                                    <NavLink href="/exit-trades">
-                                        Exit Trades
-                                    </NavLink>
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
                                 New Trade
                             </DropdownToggle>
                             <DropdownMenu right>
@@ -70,6 +53,23 @@ class NavbarComponent extends Component {
                                 <DropdownItem>
                                     <NavLink href="/new-exit-trade">
                                         New Exit Trade
+                                    </NavLink>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>
+                                Trade Log
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem>
+                                    <NavLink href="/entry-trades">
+                                        Entry Trades
+                                    </NavLink>
+                                </DropdownItem>
+                                <DropdownItem>
+                                    <NavLink href="/exit-trades">
+                                        Exit Trades
                                     </NavLink>
                                 </DropdownItem>
                             </DropdownMenu>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import axios from 'axios';
+import moment from 'moment';
 
 class NewEntryTradeForm extends Component {
 
@@ -27,6 +29,22 @@ class NewEntryTradeForm extends Component {
         event.preventDefault();
         // Clear form fields
         console.log(`Submitted:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.totalInvestment} ${this.state.coinName} ${this.state.coinBuyPrice}`);
+
+        axios.post('/entry-trades', {
+            exchange: '',
+            tradingPair: '',
+            totalInvestment: '',
+            coinName: '',
+            coinBuyPrice: '',
+            totalCoins: '',
+            finalEntryPrice: '',
+            dateLogged: ''
+        }).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        });
+
         document.getElementById("new-entry-form").reset();
         // Reset state
         this.setState({
@@ -67,17 +85,17 @@ class NewEntryTradeForm extends Component {
                 <FormGroup>
                     <Label for="total-investment">Total investment:</Label>
                     <Input type="text" name="totalInvestment" id="total-investment"
-                        placeholder="Enter total investment" onChange={this.handleChange}/>
+                        placeholder="Enter total investment" onChange={this.handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="coin-name">Coin name:</Label>
                     <Input type="text" name="coinName" id="coin-name"
-                        placeholder="Enter name of coin bought" onChange={this.handleChange}/>
+                        placeholder="Enter name of coin bought" onChange={this.handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="coin-buy-price">Coin price:</Label>
                     <Input type="text" name="coinBuyPrice" id="coin-buy-price"
-                        placeholder="Enter price coin was bought" onChange={this.handleChange}/>
+                        placeholder="Enter price coin was bought" onChange={this.handleChange} />
                 </FormGroup>
                 <Button color="primary">Submit</Button>
             </Form>
