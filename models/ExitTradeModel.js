@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema();
 
-const EntryTradeSchema = new Schema({
+const ExitTradeSchema = new Schema({
     exchange: {
         type: String,
         trim: true,
@@ -12,24 +12,24 @@ const EntryTradeSchema = new Schema({
         trim: true,
         required: true
     },
-    totalInvestment: {
-        type: Number,
-        required: true
-    },
     coinName: {
         type: String,
         trim: true,
-        required: true
-    },
-    coinBuyPrice: {
-        type: Number,
         required: true
     },
     totalCoins: {
         type: Number,
         required: true
     },
-    finalEntryPrice: {
+    coinSellPrice: {
+        type: Number,
+        required: true
+    },
+    totalDivestment: {
+        type: Number,
+        required: true
+    },
+    finalExitPrice: {
         type: Number,
         required: true
     },
@@ -40,6 +40,6 @@ const EntryTradeSchema = new Schema({
     }
 });
 
-const EntryTrade = mongoose.model('EntryTrade', EntryTradeSchema);
+const ExitTrade = mongoose.model('ExitTrade', ExitTradeSchema);
 
-module.exports = EntryTrade;
+module.exports = ExitTrade;

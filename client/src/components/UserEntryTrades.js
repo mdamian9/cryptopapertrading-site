@@ -44,7 +44,7 @@ class UserEntryTrades extends Component {
         return (
             <div>
                 <h1 className="text-center" style={{ margin: "15px", fontSize: "4.5vh" }}>
-                    Entry Trades
+                    Entry Trade Log
                 </h1>
                 <hr />
                 <Table dark striped>
