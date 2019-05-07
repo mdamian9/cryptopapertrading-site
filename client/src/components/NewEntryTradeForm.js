@@ -50,8 +50,8 @@ class NewEntryTradeForm extends Component {
             totalCoins: totalCoins.toFixed(8),
             finalEntryPrice: finalEntryPrice.toFixed(8),
             dateLogged: moment().format('MMMM Do YYYY, h:mm:ss a')
-        }).then(response => {
-            console.log(response.data);
+        }).then(res => {
+            console.log(res.data);
         }).catch(error => {
             console.log(error);
         });
