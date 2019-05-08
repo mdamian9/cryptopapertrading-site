@@ -28,9 +28,10 @@ class NewEntryTradeForm extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log(`Submitted:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.coinName} ${this.state.numCoinsSold} ${this.state.coinSellPrice}`);
 
-        //==========================================================================
+        // Converted values for number of coins sold and coin sell price
+        const c_numCoinsSold = parseFloat(this.state.numCoinsSold);
+        const c_coinSellPrice = parseFloat(this.state.coinSellPrice);
 
         let tradeFee = 0;
         if (this.state.exchangeName === 'Binance') {
@@ -39,15 +40,23 @@ class NewEntryTradeForm extends Component {
             tradeFee = .04;
         };
 
-        // axios.post('/exit-trades', {
+        const totalDivestment = (c_numCoinsSold * c_coinSellPrice) - ((c_numCoinsSold * c_coinSellPrice) * tradeFee);
+        const finalExitPrice = totalDivestment / c_numCoinsSold;
 
-        // }).then(res => {
-        //     console.log(res.data);
-        // }).catch(err => {
-        //     console.log(err);
-        // });
-
-        //==========================================================================
+        axios.post('/exit-trades', {
+            exchange: this.state.exchangeName,
+            tradingPair: this.state.tradingPair,
+            coinName: this.state.coinName,
+            totalCoins: c_numCoinsSold.toFixed(8),
+            coinSellPrice: c_coinSellPrice,
+            totalDivestment: totalDivestment,
+            finalExitPrice: finalExitPrice.toFixed(8),
+            dateLogged: moment().format('MMMM Do YYYY, h:mm:ss a')
+        }).then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        });
 
         // Clear form fields
         event.target.reset();
