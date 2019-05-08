@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import axios from 'axios';
+import moment from 'moment';
 
 class NewEntryTradeForm extends Component {
 
@@ -27,6 +29,26 @@ class NewEntryTradeForm extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         console.log(`Submitted:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.coinName} ${this.state.numCoinsSold} ${this.state.coinSellPrice}`);
+
+        //==========================================================================
+
+        let tradeFee = 0;
+        if (this.state.exchangeName === 'Binance') {
+            tradeFee = .001;
+        } else if (this.state.exchangeName === 'Coinbase') {
+            tradeFee = .04;
+        };
+
+        // axios.post('/exit-trades', {
+
+        // }).then(res => {
+        //     console.log(res.data);
+        // }).catch(err => {
+        //     console.log(err);
+        // });
+
+        //==========================================================================
+
         // Clear form fields
         event.target.reset();
         // Reset state

@@ -1,12 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const db_ExitTrades = require('../models/ExitTradeModel');
 
 router.get('/exit-trades', (req, res) => {
-    res.send('exit GET');
+    db_ExitTrades.find().then(trades => {
+        res.statusCode = 200;
+        res.send(trades);
+    });
 });
 
 router.post('/exit-trades', (req, res) => {
-    res.send('exit POST');
+    const newExitTrade = req.body;
+    db_ExitTrades.create(newExitTrade).then(trade => {
+        res.statusCode = 201;
+        res.send(`Created new exit trade: ${trade}`);
+    });
 });
 
 router.put('/exit-trades', (req, res) => {

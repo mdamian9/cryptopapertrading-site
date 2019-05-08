@@ -29,8 +29,6 @@ class NewEntryTradeForm extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
 
-        //========================================================================
-
         let tradeFee = 0;
         if (this.state.exchangeName === 'Binance') {
             tradeFee = .001;
@@ -52,11 +50,9 @@ class NewEntryTradeForm extends Component {
             dateLogged: moment().format('MMMM Do YYYY, h:mm:ss a')
         }).then(res => {
             console.log(res.data);
-        }).catch(error => {
-            console.log(error);
+        }).catch(err => {
+            console.log(err);
         });
-
-        //========================================================================
 
         // Clear form fields
         event.target.reset();
