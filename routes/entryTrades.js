@@ -21,8 +21,10 @@ router.put('/entry-trades', (req, res) => {
     res.send('Put not supported');
 });
 
-router.delete('/entry-trades', (req, res) => {
-    res.send('Delete');
+router.delete('/entry-trades/:tradeId', (req, res) => {
+    db_EntryTrades.findById(req.params.tradeId).then(trade => {
+        res.json(trade);
+    });
 });
 
 

@@ -1,27 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Table } from 'reactstrap';
-
-const RenderEntryTrade = ({ trade }) => {
-    return (
-        <tr>
-            <th scope="row">{trade.dateLogged}</th>
-            <td>{trade.exchange}</td>
-            <td>{trade.coinName}/{trade.tradingPair}</td>
-            <td>{trade.totalInvestment} {trade.tradingPair}</td>
-            <td>{trade.coinBuyPrice} {trade.tradingPair}</td>
-            <td>{trade.totalCoins} {trade.coinName}</td>
-            <td>{trade.finalEntryPrice} {trade.tradingPair}</td>
-        </tr>
-    );
-};
-
-const TradesTableBody = ({ trades }) => {
-    const tradesTable = trades.map(trade => {
-        return <RenderEntryTrade trade={trade} />
-    });
-    return tradesTable;
-};
+import TradesTableBody from './TradesTableBody';
+import axios from 'axios';
 
 class UserEntryTrades extends Component {
 
@@ -60,7 +40,7 @@ class UserEntryTrades extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <TradesTableBody trades={this.state.trades} />
+                        <TradesTableBody trades={this.state.trades} tradesType='buy' />
                     </tbody>
                 </Table>
             </div>

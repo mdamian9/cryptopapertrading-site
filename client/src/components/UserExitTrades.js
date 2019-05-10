@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+import TradesTableBody from './TradesTableBody';
+import axios from 'axios';
 
 class UserExitTrades extends Component {
-    render() {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            trades: []
+        };
+    };
+
+    componentDidMount = () => {
+        axios.get('/exit-trades').then(res => {
+            this.setState({
+                trades: res.data
+            });
+        });
+    };
+
+
+    render = () => {
         return (
             <div>
                 <h1 className="text-center" style={{ margin: "15px", fontSize: "4.5vh" }}>
@@ -22,33 +41,7 @@ class UserExitTrades extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">05/12/19</th>
-                            <td>Binance</td>
-                            <td>TRX/BTC</td>
-                            <td>12,512.475 TRX</td>
-                            <td>0.00001500 BTC</td>
-                            <td>0.18749943 BTC</td>
-                            <td>0.00001498 BTC</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">05/13/19</th>
-                            <td>Binance</td>
-                            <td>ETH/BTC</td>
-                            <td>12.5289147 ETH</td>
-                            <td>0.15750000 BTC</td>
-                            <td>1.97133077 BTC</td>
-                            <td>0.15734250 BTC</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">05/14/19</th>
-                            <td>Binance</td>
-                            <td>ADA/BTC</td>
-                            <td>23,353.905 ADA</td>
-                            <td>0.00003500 BTC</td>
-                            <td>0.81655929 BTC</td>
-                            <td>0.00003497 BTC</td>
-                        </tr>
+                        <TradesTableBody trades={this.state.trades} tradesType='sell' />
                     </tbody>
                 </Table>
             </div>

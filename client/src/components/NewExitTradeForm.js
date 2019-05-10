@@ -33,6 +33,7 @@ class NewEntryTradeForm extends Component {
         const c_numCoinsSold = parseFloat(this.state.numCoinsSold);
         const c_coinSellPrice = parseFloat(this.state.coinSellPrice);
 
+        // Binance trade fee = 0.1%, Coinbase trade fee = 4%, and Robinhood trade fee = 0%
         let tradeFee = 0;
         if (this.state.exchangeName === 'Binance') {
             tradeFee = .001;
@@ -40,9 +41,18 @@ class NewEntryTradeForm extends Component {
             tradeFee = .04;
         };
 
-        const totalDivestment = (c_numCoinsSold * c_coinSellPrice) - ((c_numCoinsSold * c_coinSellPrice) * tradeFee);
-        const finalExitPrice = totalDivestment / c_numCoinsSold;
+        let totalDivestment = (c_numCoinsSold * c_coinSellPrice) - ((c_numCoinsSold * c_coinSellPrice) * tradeFee);
+        let finalExitPrice = totalDivestment / c_numCoinsSold;
 
+        if (this.state.tradingPair === 'USD' || this.state.tradingPair === 'USDT') {
+            totalDivestment = totalDivestment.toFixed(7);
+            finalExitPrice = finalExitPrice.toFixed(7);
+        } else {
+            totalDivestment = totalDivestment.toFixed(8);
+            finalExitPrice = finalExitPrice.toFixed(8);
+        };
+
+        // POST new exit trade to MongoDB, log response to console
         axios.post('/exit-trades', {
             exchange: this.state.exchangeName,
             tradingPair: this.state.tradingPair,
@@ -50,13 +60,15 @@ class NewEntryTradeForm extends Component {
             totalCoins: c_numCoinsSold.toFixed(8),
             coinSellPrice: c_coinSellPrice,
             totalDivestment: totalDivestment,
-            finalExitPrice: finalExitPrice.toFixed(8),
+            finalExitPrice: finalExitPrice,
             dateLogged: moment().format('MMMM Do YYYY, h:mm:ss a')
         }).then(res => {
             console.log(res.data);
         }).catch(err => {
             console.log(err);
         });
+
+        // alert('');
 
         // Clear form fields
         event.target.reset();
@@ -71,7 +83,6 @@ class NewEntryTradeForm extends Component {
     };
 
     render = () => {
-        console.log(`Rendered:\n${this.state.exchangeName} ${this.state.tradingPair} ${this.state.coinName} ${this.state.numCoinsSold} ${this.state.coinSellPrice}`);
         return (
             <Form onSubmit={this.handleFormSubmit}>
                 <FormGroup>

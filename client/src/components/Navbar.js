@@ -64,12 +64,12 @@ class NavbarComponent extends Component {
                             <DropdownMenu right>
                                 <DropdownItem>
                                     <NavLink href="/entry-trades">
-                                        Entry Trades
+                                        Entry Trades Log
                                     </NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
                                     <NavLink href="/exit-trades">
-                                        Exit Trades
+                                        Exit Trades Log
                                     </NavLink>
                                 </DropdownItem>
                             </DropdownMenu>
