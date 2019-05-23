@@ -17,6 +17,8 @@ class UserExitTrades extends Component {
             this.setState({
                 trades: res.data
             });
+        }).catch(err => {
+            console.log(err);
         });
     };
 
@@ -33,7 +35,7 @@ class UserExitTrades extends Component {
                         <tr>
                             <th>Date</th>
                             <th>Exchange</th>
-                            <th>Coin Name</th>
+                            <th>Pair Traded</th>
                             <th>Total Coins Sold</th>
                             <th>Sell Price</th>
                             <th>Total Divestment</th>
