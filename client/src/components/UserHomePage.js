@@ -12,6 +12,10 @@ class UserHomePage extends Component {
         };
     };
 
+    componentDidMount = () => {
+        console.log('home page mounted');
+    };
+
     render = () => {
         return (
             <div style={{ color: 'white' }} className="full-div">
@@ -29,7 +33,8 @@ class UserHomePage extends Component {
                             <Row className="justify-content-center">
                                 <Col xs="2"><Button color="success" href="/new-entry-trade">New Entry Trade</Button></Col>
                                 <Col xs="2"><Button color="danger" href="/new-exit-trade">New Exit Trade</Button></Col>
-                                <Col xs="2"><Button color="primary" href="/trade-log">Trade Log</Button></Col>
+                                <Col xs="2"><Button color="primary" href="/entry-trades">View Entry Trades</Button></Col>
+                                <Col xs="2"><Button color="secondary" href="/exit-trades">View Exit Trades</Button></Col>
                             </Row>
                             <br />
                         </Col>

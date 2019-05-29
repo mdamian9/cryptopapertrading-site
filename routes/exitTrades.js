@@ -6,6 +6,8 @@ router.get('/exit-trades', (req, res) => {
     db_ExitTrades.find().then(trades => {
         res.statusCode = 200;
         res.send(trades);
+    }).catch(err => {
+        console.log(err);
     });
 });
 
@@ -14,6 +16,8 @@ router.post('/exit-trades', (req, res) => {
     db_ExitTrades.create(newExitTrade).then(trade => {
         res.statusCode = 201;
         res.send(`Created new exit trade: ${trade}`);
+    }).catch(err => {
+        console.log(err);
     });
 });
 
@@ -26,3 +30,4 @@ router.delete('/exit-trades', (req, res) => {
 });
 
 module.exports = router;
+

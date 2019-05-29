@@ -6,6 +6,8 @@ router.get('/entry-trades', (req, res) => {
     db_EntryTrades.find().then(trades => {
         res.statusCode = 200;
         res.send(trades);
+    }).catch(err => {
+        console.log(err);
     });
 });
 
@@ -14,6 +16,8 @@ router.post('/entry-trades', (req, res) => {
     db_EntryTrades.create(newEntryTrade).then(trade => {
         res.statusCode = 201;
         res.send(`Created new entry trade: ${trade}`);
+    }).catch(err => {
+        console.log(err);
     });
 });
 
@@ -22,8 +26,10 @@ router.put('/entry-trades', (req, res) => {
 });
 
 router.delete('/entry-trades/:tradeId', (req, res) => {
-    db_EntryTrades.findById(req.params.tradeId).then(trade => {
-        res.json(trade);
+    db_EntryTrades.findByIdAndDelete(req.params.tradeId).then(trade => {
+        res.json(`Deleted ${trade}`);
+    }).catch(err => {
+        console.log(err);
     });
 });
 

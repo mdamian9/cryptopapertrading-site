@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
-import TradesTableBody from './TradesTableBody';
+import { Button, Table } from 'reactstrap';
 import axios from 'axios';
+
+const TradesTableRow = ({ trade, tradeId, deleteTrade }) => {
+    return (
+        <tr>
+            <th scope='row'>{trade.dateLogged}</th>
+            <td>{trade.exchange}</td>
+            <td>{trade.coinName}/{trade.tradingPair}</td>
+            <td>{trade.totalCoins} {trade.coinName}</td>
+            <td>{trade.coinSellPrice} {trade.tradingPair}</td>
+            <td>{trade.totalDivestment} {trade.tradingPair}</td>
+            <td>{trade.finalExitPrice} {trade.tradingPair}</td>
+            <td>
+                <Button onClick={() => { deleteTrade(tradeId) }} color='danger'>Delete</Button>
+            </td>
+        </tr>
+    )
+}
+
+const TradesTableBody = ({ trades, deleteTrade }) => {
+    const tradesTable = trades.map(trade => {
+        return <TradesTableRow key={trade._id} trade={trade} tradeId={trade._id} deleteTrade={deleteTrade} />
+    });
+    return tradesTable;
+};
 
 class UserExitTrades extends Component {
 
@@ -22,6 +45,13 @@ class UserExitTrades extends Component {
         });
     };
 
+    componentDidUpdate = () => {
+        console.log('updated UserExitTrades');
+    };
+
+    deleteTrade = (tradeId) => {
+        console.log('delete');
+    };
 
     render = () => {
         return (
@@ -43,7 +73,7 @@ class UserExitTrades extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <TradesTableBody trades={this.state.trades} tradesType='sell' />
+                        <TradesTableBody trades={this.state.trades} deleteTrade={this.deleteTrade} />
                     </tbody>
                 </Table>
             </div>
