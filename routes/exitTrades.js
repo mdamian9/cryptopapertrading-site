@@ -22,12 +22,16 @@ router.post('/exit-trades', (req, res) => {
 });
 
 router.put('/exit-trades', (req, res) => {
-    res.send('exit PUT');
+    res.send('PUT not supported');
 });
 
-router.delete('/exit-trades', (req, res) => {
-    res.send('exit DELETE');
+router.delete('/exit-trades/:tradeId', (req, res) => {
+    db_ExitTrades.findByIdAndDelete(req.params.tradeId).then(trade => {
+        res.statusCode = 200;
+        res.send(`Deleted ${trade}`);
+    }).catch(err => {
+        console.log(err);
+    });
 });
 
 module.exports = router;
-

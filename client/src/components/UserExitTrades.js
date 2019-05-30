@@ -16,8 +16,8 @@ const TradesTableRow = ({ trade, tradeId, deleteTrade }) => {
                 <Button onClick={() => { deleteTrade(tradeId) }} color='danger'>Delete</Button>
             </td>
         </tr>
-    )
-}
+    );
+};
 
 const TradesTableBody = ({ trades, deleteTrade }) => {
     const tradesTable = trades.map(trade => {
@@ -50,7 +50,11 @@ class UserExitTrades extends Component {
     };
 
     deleteTrade = (tradeId) => {
-        console.log('delete');
+        axios.delete(`/exit-trades/${tradeId}`).then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        });
     };
 
     render = () => {

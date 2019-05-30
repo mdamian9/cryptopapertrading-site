@@ -27,11 +27,11 @@ router.put('/entry-trades', (req, res) => {
 
 router.delete('/entry-trades/:tradeId', (req, res) => {
     db_EntryTrades.findByIdAndDelete(req.params.tradeId).then(trade => {
-        res.json(`Deleted ${trade}`);
+        res.statusCode = 200;
+        res.send(`Deleted ${trade}`);
     }).catch(err => {
         console.log(err);
     });
 });
-
 
 module.exports = router;
