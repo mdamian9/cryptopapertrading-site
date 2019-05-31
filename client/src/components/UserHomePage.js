@@ -26,7 +26,9 @@ class UserHomePage extends Component {
                             <br />
                             <Row>
                                 <Col>
-                                    Welcome User!
+                                    <h2 style={{ fontSize: '6vh' }}>
+                                        Welcome User!
+                                    </h2>
                                 </Col>
                             </Row>
                             <br />
@@ -35,6 +37,12 @@ class UserHomePage extends Component {
                                 <Col xs="2"><Button color="danger" href="/new-exit-trade">New Exit Trade</Button></Col>
                                 <Col xs="2"><Button color="primary" href="/entry-trades">View Entry Trades</Button></Col>
                                 <Col xs="2"><Button color="secondary" href="/exit-trades">View Exit Trades</Button></Col>
+                            </Row>
+                            <hr />
+                            <Row className="justify-content-center">
+                                <Col xs='2'><Button color='light' href='/find-percent-change'>Find % Change</Button></Col>
+                                <Col xs='2'><Button color='dark' href='/get-target-price'>Get Target Price</Button></Col>
+                                <Col xs='2'><Button color='warning' href='/calculate-roi'>Calculate ROI</Button></Col>
                             </Row>
                             <br />
                         </Col>
