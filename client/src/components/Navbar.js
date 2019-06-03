@@ -45,15 +45,11 @@ class NavbarComponent extends Component {
                                 New Trade
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>
-                                    <NavLink href="/new-entry-trade">
-                                        New Entry Trade
-                                    </NavLink>
+                                <DropdownItem href="/new-entry-trade">
+                                    New Entry Trade
                                 </DropdownItem>
-                                <DropdownItem>
-                                    <NavLink href="/new-exit-trade">
-                                        New Exit Trade
-                                    </NavLink>
+                                <DropdownItem href="/new-exit-trade">
+                                    New Exit Trade
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
@@ -62,15 +58,27 @@ class NavbarComponent extends Component {
                                 Trade Log
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>
-                                    <NavLink href="/entry-trades">
-                                        Entry Trades Log
-                                    </NavLink>
+                                <DropdownItem href="/entry-trades">
+                                    Entry Trades Log
                                 </DropdownItem>
-                                <DropdownItem>
-                                    <NavLink href="/exit-trades">
-                                        Exit Trades Log
-                                    </NavLink>
+                                <DropdownItem href="/exit-trades">
+                                    Exit Trades Log
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>
+                                Tools
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem href="/find-percent-change">
+                                    Find % Change
+                                </DropdownItem>
+                                <DropdownItem href="/get-target-price">
+                                    Get Target Price
+                                </DropdownItem>
+                                <DropdownItem href="/calculate-roi">
+                                    Calculate ROI
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
@@ -81,15 +89,15 @@ class NavbarComponent extends Component {
                             <DropdownMenu right>
                                 <DropdownItem>
                                     {/* <NavLink href="/tutorial"> */}
-                                        Tutorial
+                                    Tutorial
                                     {/* </NavLink> */}
                                 </DropdownItem>
                                 <DropdownItem>
                                     My Account
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem>
-                                    <NavLink href="/">Log Out</NavLink>
+                                <DropdownItem href="/">
+                                    Log Out
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>

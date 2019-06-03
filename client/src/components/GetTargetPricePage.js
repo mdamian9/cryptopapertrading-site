@@ -92,7 +92,6 @@ class GetTargetPricePage extends Component {
                         </Col>
                     </Row>
                 </Container>
-
             </div>
         );
     };

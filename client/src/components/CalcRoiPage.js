@@ -7,6 +7,7 @@ class CalcRoiPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            tradingPair: '',
             investment: '0.0',
             divestment: '0.0',
             roi_x: '0.0',
@@ -21,6 +22,7 @@ class CalcRoiPage extends Component {
         const roi_x = divestment / investment;
         const roi_percent = ((divestment / investment) - 1) * 100;
         this.setState({
+            tradingPair: event.target.tradingPair.value,
             investment: event.target.investment.value,
             divestment: event.target.divestment.value,
             roi_x: roi_x.toFixed(2),
@@ -38,6 +40,18 @@ class CalcRoiPage extends Component {
                     <Row>
                         <Col>
                             <Form onSubmit={this.handleFormSubmit} className="mx-auto w-outline" style={{ padding: '15px' }}>
+                                <FormGroup>
+                                    <Label for="trading-pair">Trading Pair:</Label>
+                                    <Input type="select" name="tradingPair" id="trading-pair"
+                                        defaultValue="-- select trading pair --" onChange={this.handleChange}>
+                                        <option disabled>-- select trading pair --</option>
+                                        <option>USD</option>
+                                        <option>USDT</option>
+                                        <option>BTC</option>
+                                        <option>ETH</option>
+                                        <option>BNB</option>
+                                    </Input>
+                                </FormGroup>
                                 <FormGroup>
                                     <Label for="init-investment">Initial investment:</Label>
                                     <Input type="text" name="investment" id="init-investment" placeholder="Enter initial investment" />
@@ -63,12 +77,12 @@ class CalcRoiPage extends Component {
                         <Col>
                             <Row>
                                 <Col>
-                                    Initial investment: {this.state.investment}
+                                    Initial investment: {this.state.investment} {this.state.tradingPair}
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    Final divestment: {this.state.divestment}
+                                    Final divestment: {this.state.divestment} {this.state.tradingPair}
                                 </Col>
                             </Row>
                         </Col>
