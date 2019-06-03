@@ -16,20 +16,17 @@ class CalcRoiPage extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log(event.target.investment.value);
-        console.log(event.target.divestment.value);
-
-        const investment = event.target.investment.value;
-        const divestment = event.target.divestment.value;
+        const investment = parseFloat(event.target.investment.value);
+        const divestment = parseFloat(event.target.divestment.value);
         const roi_x = divestment / investment;
         const roi_percent = ((divestment / investment) - 1) * 100;
-
         this.setState({
             investment: event.target.investment.value,
             divestment: event.target.divestment.value,
             roi_x: roi_x.toFixed(2),
             roi_percent: roi_percent.toFixed(2)
         });
+        event.target.reset();
     };
 
     render = () => {
@@ -37,7 +34,7 @@ class CalcRoiPage extends Component {
             <div>
                 <NavbarComponent />
                 <br />
-                <Container style={{ maxWidth: '60%' }}>
+                <Container className="text-white" style={{ maxWidth: '60%' }}>
                     <Row>
                         <Col>
                             <Form onSubmit={this.handleFormSubmit} className="mx-auto w-outline" style={{ padding: '15px' }}>
@@ -55,9 +52,14 @@ class CalcRoiPage extends Component {
                     </Row>
                 </Container>
                 <br />
-                <Container className="text-center w-outline" style={{ maxWidth: '60%' }}>
+                <Container className="text-center text-white w-outline" style={{ maxWidth: '60%', padding: '15px' }}>
                     <Row>
-                        {/* Render this.state in these columns, test refresh when submit */}
+                        <Col>
+                            <h1 className="text-white" style={{ fontSize: '3vh' }}>Return of investment / ROI Calculation</h1>
+                        </Col>
+                    </Row>
+                    <hr />
+                    <Row>
                         <Col>
                             <Row>
                                 <Col>
@@ -81,7 +83,6 @@ class CalcRoiPage extends Component {
                                     ROI (percentage): {this.state.roi_percent}%
                                 </Col>
                             </Row>
-
                         </Col>
                     </Row>
                 </Container>

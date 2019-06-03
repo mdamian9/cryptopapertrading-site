@@ -14,6 +14,8 @@ import NewExitTradePage from './components/NewExitTradePage';
 import EntryTradeLogPage from './components/EntryTradeLogPage';
 import ExitTradeLogPage from './components/ExitTradeLogPage';
 import CalcRoiPage from './components/CalcRoiPage';
+import GetTargetPricePage from './components/GetTargetPricePage';
+import FindPercentChangePage from './components/FindPercentChangePage';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -27,7 +29,9 @@ ReactDOM.render(
         <Route exact path="/new-exit-trade" component={NewExitTradePage} />
         <Route exact path="/entry-trades" component={EntryTradeLogPage} />
         <Route exact path="/exit-trades" component={ExitTradeLogPage} />
-        <Route exact path="/calc-roi" component={CalcRoiPage} />
+        <Route exact path="/calculate-roi" component={CalcRoiPage} />
+        <Route exact path="/get-target-price" component={GetTargetPricePage} />
+        <Route exact path='/find-percent-change' component={FindPercentChangePage} />
     </Router>
     , document.getElementById('root')
 );
