@@ -16,7 +16,6 @@ class FindPercentChangePage extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-
         const entryPrice = parseFloat(event.target.entryPrice.value);
         const exitPrice = parseFloat(event.target.exitPrice.value);
         const percentChange = ((exitPrice - entryPrice) / entryPrice) * 100;
@@ -26,7 +25,6 @@ class FindPercentChangePage extends Component {
             exitPrice: event.target.exitPrice.value,
             percentChange: percentChange.toFixed(2)
         });
-
         event.target.reset();
     };
 
@@ -42,7 +40,7 @@ class FindPercentChangePage extends Component {
                                 <FormGroup>
                                     <Label for="trading-pair">Trading Pair:</Label>
                                     <Input type="select" name="tradingPair" id="trading-pair"
-                                        defaultValue="-- select trading pair --" onChange={this.handleChange}>
+                                        defaultValue="-- select trading pair --">
                                         <option disabled>-- select trading pair --</option>
                                         <option>USD</option>
                                         <option>USDT</option>

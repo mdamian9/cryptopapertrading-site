@@ -43,7 +43,7 @@ class CalcRoiPage extends Component {
                                 <FormGroup>
                                     <Label for="trading-pair">Trading Pair:</Label>
                                     <Input type="select" name="tradingPair" id="trading-pair"
-                                        defaultValue="-- select trading pair --" onChange={this.handleChange}>
+                                        defaultValue="-- select trading pair --">
                                         <option disabled>-- select trading pair --</option>
                                         <option>USD</option>
                                         <option>USDT</option>

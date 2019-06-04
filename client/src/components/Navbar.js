@@ -87,10 +87,8 @@ class NavbarComponent extends Component {
                                 Menu
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>
-                                    {/* <NavLink href="/tutorial"> */}
+                                <DropdownItem href="/tutorial">
                                     Tutorial
-                                    {/* </NavLink> */}
                                 </DropdownItem>
                                 <DropdownItem>
                                     My Account

@@ -16,11 +16,17 @@ class GetTargetPricePage extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        const tradingPair = event.target.tradingPair.value;
         const entryPrice = parseFloat(event.target.entryPrice.value);
-        const percentGain = parseFloat(event.target.percentGain.value);
-        const targetPrice = (entryPrice * percentGain) + entryPrice;
+        const percentGain = parseFloat(event.target.percentGain.value) / 100;
+        let targetPrice = (entryPrice * percentGain) + entryPrice;
+        if (tradingPair === 'BTC' || tradingPair === 'ETH' || tradingPair === 'BNB') {
+            targetPrice = targetPrice.toFixed(8);
+        } else if (tradingPair === 'USD' || tradingPair === 'USDT') {
+            targetPrice = targetPrice.toFixed(7);
+        };
         this.setState({
-            tradingPair: event.target.tradingPair.value,
+            tradingPair: tradingPair,
             entryPrice: event.target.entryPrice.value,
             percentGain: event.target.percentGain.value,
             targetPrice: targetPrice
@@ -40,7 +46,7 @@ class GetTargetPricePage extends Component {
                                 <FormGroup>
                                     <Label for="trading-pair">Trading Pair:</Label>
                                     <Input type="select" name="tradingPair" id="trading-pair"
-                                        defaultValue="-- select trading pair --" onChange={this.handleChange}>
+                                        defaultValue="-- select trading pair --">
                                         <option disabled>-- select trading pair --</option>
                                         <option>USD</option>
                                         <option>USDT</option>
