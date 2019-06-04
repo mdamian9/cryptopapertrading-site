@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 import axios from 'axios';
 
 const TradesTableRow = ({ trade, tradeId, deleteTrade }) => {
@@ -50,8 +50,12 @@ class UserExitTrades extends Component {
     };
 
     deleteTrade = (tradeId) => {
-        axios.delete(`/exit-trades/${tradeId}`).then(res => {
-            console.log(res.data);
+        const promises = [axios.delete(`/exit-trades/${tradeId}`), axios.get('/exit-trades')];
+        Promise.all(promises).then(values => {
+            console.log(values[0].data);
+            this.setState({
+                trades: values[1].data
+            });
         }).catch(err => {
             console.log(err);
         });
@@ -60,6 +64,16 @@ class UserExitTrades extends Component {
     render = () => {
         return (
             <div>
+                <Modal isOpen={this.state.deleteModal} toggle={this.toggleModal} className={this.props.className}>
+                    <ModalHeader toggle={this.toggleModal}>Modal title</ModalHeader>
+                    <ModalBody>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggleModal}>Do Something</Button>{' '}
+                        <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
                 <h1 className="text-center" style={{ margin: "15px", fontSize: "4.5vh" }}>
                     Exit Trade Log
                 </h1>
