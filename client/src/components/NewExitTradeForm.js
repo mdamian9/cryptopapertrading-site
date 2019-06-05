@@ -81,7 +81,7 @@ class NewEntryTradeForm extends Component {
                 <FormGroup>
                     <Label for="exchange-name">Exchange:</Label>
                     <Input type="select" name="exchangeName" id="exchange-name"
-                        defaultValue={this.state.exchangeName} onChange={this.handleChange}>
+                        defaultValue={this.state.exchangeName} onChange={this.handleChange} required>
                         <option disabled>-- select exchange --</option>
                         <option>Binance</option>
                         <option>Coinbase</option>
@@ -91,7 +91,7 @@ class NewEntryTradeForm extends Component {
                 <FormGroup>
                     <Label for="trading-pair">Trading Pair:</Label>
                     <Input type="select" name="tradingPair" id="trading-pair"
-                        defaultValue={this.state.tradingPair} onChange={this.handleChange}>
+                        defaultValue={this.state.tradingPair} onChange={this.handleChange} required>
                         <option disabled>-- select trading pair --</option>
                         <option>USD</option>
                         <option>USDT</option>
@@ -103,22 +103,23 @@ class NewEntryTradeForm extends Component {
                 <FormGroup>
                     <Label for="coin-name">Coin name:</Label>
                     <Input type="text" name="coinName" id="coin-name"
-                        placeholder="Enter name of coin sold" onChange={this.handleChange} />
+                        placeholder="Enter name of coin sold" onChange={this.handleChange} required />
                 </FormGroup>
                 <FormGroup>
                     <Label for="num-coins-sold">Number of coins / tokens sold:</Label>
                     <Input type="text" name="numCoinsSold" id="num-coins-sold"
-                        placeholder="Enter number of coins / tokens sold" onChange={this.handleChange} />
+                        placeholder="Enter number of coins / tokens sold" onChange={this.handleChange} required />
                 </FormGroup>
                 <FormGroup>
                     <Label for="coin-sell-price">Coin price:</Label>
                     <Input type="text" name="coinSellPrice" id="coin-sell-price"
-                        placeholder="Enter price coin was sold" onChange={this.handleChange} />
+                        placeholder="Enter price coin was sold" onChange={this.handleChange} required />
                 </FormGroup>
                 <Button color="primary">Submit</Button>
             </Form>
         );
     };
+    
 };
 
 export default NewEntryTradeForm;

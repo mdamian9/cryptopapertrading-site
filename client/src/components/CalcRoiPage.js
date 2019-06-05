@@ -43,7 +43,7 @@ class CalcRoiPage extends Component {
                                 <FormGroup>
                                     <Label for="trading-pair">Trading Pair:</Label>
                                     <Input type="select" name="tradingPair" id="trading-pair"
-                                        defaultValue="-- select trading pair --">
+                                        defaultValue="-- select trading pair --" required>
                                         <option disabled>-- select trading pair --</option>
                                         <option>USD</option>
                                         <option>USDT</option>
@@ -54,11 +54,11 @@ class CalcRoiPage extends Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="init-investment">Initial investment:</Label>
-                                    <Input type="text" name="investment" id="init-investment" placeholder="Enter initial investment" />
+                                    <Input type="text" name="investment" id="init-investment" placeholder="Enter initial investment" required/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="final-divestment">Final divestment:</Label>
-                                    <Input type="text" name="divestment" id="final-divestment" placeholder="Enter final divestment" />
+                                    <Input type="text" name="divestment" id="final-divestment" placeholder="Enter final divestment" required/>
                                 </FormGroup>
                                 <Button>Submit</Button>
                             </Form>

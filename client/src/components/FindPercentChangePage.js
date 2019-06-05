@@ -40,7 +40,7 @@ class FindPercentChangePage extends Component {
                                 <FormGroup>
                                     <Label for="trading-pair">Trading Pair:</Label>
                                     <Input type="select" name="tradingPair" id="trading-pair"
-                                        defaultValue="-- select trading pair --">
+                                        defaultValue="-- select trading pair --" require>
                                         <option disabled>-- select trading pair --</option>
                                         <option>USD</option>
                                         <option>USDT</option>
@@ -51,11 +51,11 @@ class FindPercentChangePage extends Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="entry-price">Entry price:</Label>
-                                    <Input type="text" name="entryPrice" id="entry-price" placeholder="Enter entry price" />
+                                    <Input type="text" name="entryPrice" id="entry-price" placeholder="Enter entry price" require />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="exit-price">Exit price:</Label>
-                                    <Input type="text" name="exitPrice" id="exit-price" placeholder="Enter exit price" />
+                                    <Input type="text" name="exitPrice" id="exit-price" placeholder="Enter exit price" require/>
                                 </FormGroup>
                                 <Button>Submit</Button>
                             </Form>

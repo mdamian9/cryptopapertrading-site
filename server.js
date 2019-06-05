@@ -16,6 +16,7 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }).then(() => { console.log('Con
 const indexRouter = require('./routes/index');
 const entryTradesRouter = require('./routes/entryTrades');
 const exitTradesRouter = require('./routes/exitTrades');
+const twitterRouter = require('./routes/twitterRouter');
 
 // Log all requests to the console
 app.use(logger('dev'));
@@ -28,6 +29,7 @@ app.use(bodyParser.json());
 app.use('/', indexRouter);
 app.use('/', entryTradesRouter);
 app.use('/', exitTradesRouter);
+app.use('/', twitterRouter);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
