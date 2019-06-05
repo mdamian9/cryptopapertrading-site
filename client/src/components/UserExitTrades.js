@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 import axios from 'axios';
 
-const TradesTableRow = ({ trade, tradeId, deleteTrade }) => {
+const TradesTableRow = ({ trade, toggleModal }) => {
     return (
         <tr>
             <th scope='row'>{trade.dateLogged}</th>
@@ -13,15 +13,15 @@ const TradesTableRow = ({ trade, tradeId, deleteTrade }) => {
             <td>{trade.totalDivestment} {trade.tradingPair}</td>
             <td>{trade.finalExitPrice} {trade.tradingPair}</td>
             <td>
-                <Button onClick={() => { deleteTrade(tradeId) }} color='danger'>Delete</Button>
+                <Button onClick={() => { toggleModal(trade); }} color='danger'>Delete</Button>
             </td>
         </tr>
     );
 };
 
-const TradesTableBody = ({ trades, deleteTrade }) => {
+const TradesTableBody = ({ trades, toggleModal }) => {
     const tradesTable = trades.map(trade => {
-        return <TradesTableRow key={trade._id} trade={trade} tradeId={trade._id} deleteTrade={deleteTrade} />
+        return <TradesTableRow key={trade._id} trade={trade} toggleModal={toggleModal} />
     });
     return tradesTable;
 };
@@ -31,8 +31,12 @@ class UserExitTrades extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            trades: []
+            trades: [],
+            deleteModal: false,
+            deleteTrade: ''
         };
+        this.toggleModal = this.toggleModal.bind(this);
+        this.deleteTrade = this.deleteTrade.bind(this);
     };
 
     componentDidMount = () => {
@@ -45,17 +49,25 @@ class UserExitTrades extends Component {
         });
     };
 
-    componentDidUpdate = () => {
-        console.log('updated UserExitTrades');
+    toggleModal = trade => {
+        if (this.state.deleteModal === true) {
+            trade = '';
+        };
+        this.setState(prevState => ({
+            deleteModal: !prevState.deleteModal,
+            deleteTrade: trade
+        }));
     };
 
-    deleteTrade = (tradeId) => {
-        const promises = [axios.delete(`/exit-trades/${tradeId}`), axios.get('/exit-trades')];
+    deleteTrade = () => {
+        const promises = [axios.delete(`/exit-trades/${this.state.deleteTrade._id}`), axios.get('/exit-trades')];
         Promise.all(promises).then(values => {
             console.log(values[0].data);
-            this.setState({
-                trades: values[1].data
-            });
+            this.setState(prevState => ({
+                trades: values[1].data,
+                deleteModal: !prevState.deleteModal,
+                deleteTrade: ''
+            }));
         }).catch(err => {
             console.log(err);
         });
@@ -65,12 +77,12 @@ class UserExitTrades extends Component {
         return (
             <div>
                 <Modal isOpen={this.state.deleteModal} toggle={this.toggleModal} className={this.props.className}>
-                    <ModalHeader toggle={this.toggleModal}>Modal title</ModalHeader>
+                    <ModalHeader toggle={this.toggleModal}>Confirm Delete</ModalHeader>
                     <ModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        Are you sure you want to delete this trade?
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.toggleModal}>Do Something</Button>{' '}
+                        <Button color="danger" onClick={this.deleteTrade}>Delete</Button>{' '}
                         <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
@@ -91,12 +103,13 @@ class UserExitTrades extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <TradesTableBody trades={this.state.trades} deleteTrade={this.deleteTrade} />
+                        <TradesTableBody trades={this.state.trades} toggleModal={this.toggleModal} />
                     </tbody>
                 </Table>
             </div>
         );
     };
+    
 };
 
 export default UserExitTrades;

@@ -28,11 +28,9 @@ class NewEntryTradeForm extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-
         // Converted values for number of coins sold and coin sell price
         const c_numCoinsSold = parseFloat(this.state.numCoinsSold);
         const c_coinSellPrice = parseFloat(this.state.coinSellPrice);
-
         // Binance trade fee = 0.1%, Coinbase trade fee = 4%, and Robinhood trade fee = 0%
         let tradeFee = 0;
         if (this.state.exchangeName === 'Binance') {
@@ -40,10 +38,8 @@ class NewEntryTradeForm extends Component {
         } else if (this.state.exchangeName === 'Coinbase') {
             tradeFee = .04;
         };
-
         let totalDivestment = (c_numCoinsSold * c_coinSellPrice) - ((c_numCoinsSold * c_coinSellPrice) * tradeFee);
         let finalExitPrice = totalDivestment / c_numCoinsSold;
-
         if (this.state.tradingPair === 'USD' || this.state.tradingPair === 'USDT') {
             totalDivestment = totalDivestment.toFixed(7);
             finalExitPrice = finalExitPrice.toFixed(7);
@@ -51,7 +47,6 @@ class NewEntryTradeForm extends Component {
             totalDivestment = totalDivestment.toFixed(8);
             finalExitPrice = finalExitPrice.toFixed(8);
         };
-
         // POST new exit trade to MongoDB, log response to console
         axios.post('/exit-trades', {
             exchange: this.state.exchangeName,
@@ -64,12 +59,10 @@ class NewEntryTradeForm extends Component {
             dateLogged: moment().format('MMMM Do YYYY, h:mm:ss a')
         }).then(res => {
             console.log(res.data);
+            alert(res.data);
         }).catch(err => {
             console.log(err);
         });
-
-        // alert('');
-
         // Clear form fields
         event.target.reset();
         // Reset state

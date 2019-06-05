@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 import axios from 'axios';
 
-const TradesTableRow = ({ trade, tradeId, toggleModal }) => {
+const TradesTableRow = ({ trade, toggleModal }) => {
     return (
         <tr>
             <th scope="row">{trade.dateLogged}</th>
@@ -13,7 +13,7 @@ const TradesTableRow = ({ trade, tradeId, toggleModal }) => {
             <td>{trade.totalCoins} {trade.coinName}</td>
             <td>{trade.finalEntryPrice} {trade.tradingPair}</td>
             <td>
-                <Button onClick={() => { toggleModal(tradeId); }} color='danger'>Delete</Button>
+                <Button onClick={() => { toggleModal(trade); }} color='danger'>Delete</Button>
             </td>
         </tr >
     );
@@ -21,7 +21,7 @@ const TradesTableRow = ({ trade, tradeId, toggleModal }) => {
 
 const TradesTableBody = ({ trades, toggleModal }) => {
     const tradesTable = trades.map(trade => {
-        return <TradesTableRow key={trade._id} trade={trade} tradeId={trade._id} toggleModal={toggleModal} />
+        return <TradesTableRow key={trade._id} trade={trade} toggleModal={toggleModal} />
     });
     return tradesTable;
 };
@@ -33,9 +33,10 @@ class UserEntryTrades extends Component {
         this.state = {
             trades: [],
             deleteModal: false,
-            deleteTradeId: ''
+            deleteTrade: ''
         };
         this.toggleModal = this.toggleModal.bind(this);
+        this.deleteTrade = this.deleteTrade.bind(this);
     };
 
     componentDidMount = () => {
@@ -48,37 +49,28 @@ class UserEntryTrades extends Component {
         });
     };
 
-    componentDidUpdate = () => {
-        console.log('updated UserEntryTrades');
-        console.log(this.state);
-    };
-
-    toggleModal(tradeId) {
+    toggleModal = trade => {
         if (this.state.deleteModal === true) {
-            tradeId = '';
+            trade = '';
         };
         this.setState(prevState => ({
             deleteModal: !prevState.deleteModal,
-            deleteTradeId: tradeId
+            deleteTrade: trade
         }));
-        // console.log(this.state);
     };
 
-    deleteTrade = tradeId => {
-        // const promises = [axios.delete(`/entry-trades/${tradeId}`), axios.get('/entry-trades')];
-        // Promise.all(promises).then(values => {
-        //     console.log(values[0].data);
-        //     this.setState({
-        //         trades: values[1].data
-        //     });
-        // }).catch(err => {
-        //     console.log(err);
-        // });
-        console.log('delete');
-        this.setState(prevState => ({
-            deleteModal: !prevState.deleteModal,
-            deleteTradeId: ''
-        }));
+    deleteTrade = () => {
+        const promises = [axios.delete(`/entry-trades/${this.state.deleteTrade._id}`), axios.get('/entry-trades')];
+        Promise.all(promises).then(values => {
+            console.log(values[0].data);
+            this.setState(prevState => ({
+                trades: values[1].data,
+                deleteModal: !prevState.deleteModal,
+                deleteTrade: ''
+            }));
+        }).catch(err => {
+            console.log(err);
+        });
     };
 
     render = () => {
@@ -118,6 +110,7 @@ class UserEntryTrades extends Component {
             </div>
         );
     };
+    
 };
 
 export default UserEntryTrades;

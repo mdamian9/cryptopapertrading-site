@@ -28,17 +28,14 @@ class NewEntryTradeForm extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-
         let tradeFee = 0;
         if (this.state.exchangeName === 'Binance') {
             tradeFee = .001;
         } else if (this.state.exchangeName === 'Coinbase') {
             tradeFee = .04;
         };
-
         const totalCoins = (parseFloat(this.state.totalInvestment) - (parseFloat(this.state.totalInvestment) * tradeFee)) / parseFloat(this.state.coinBuyPrice);
         const finalEntryPrice = parseFloat(this.state.totalInvestment) / totalCoins;
-
         axios.post('/entry-trades', {
             exchange: this.state.exchangeName,
             tradingPair: this.state.tradingPair,
@@ -50,10 +47,10 @@ class NewEntryTradeForm extends Component {
             dateLogged: moment().format('MMMM Do YYYY, h:mm:ss a')
         }).then(res => {
             console.log(res.data);
+            alert(res.data);
         }).catch(err => {
             console.log(err);
         });
-
         // Clear form fields
         event.target.reset();
         // Reset state
