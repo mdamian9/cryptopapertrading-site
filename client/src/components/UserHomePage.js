@@ -39,7 +39,6 @@ class UserHomePage extends Component {
     };
 
     render = () => {
-        console.log(this.state);
         return (
             <div style={{ color: 'white' }} className="full-div">
                 <NavbarComponent />

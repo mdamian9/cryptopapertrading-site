@@ -5,10 +5,12 @@ const logger = require('morgan'); // used to see requests
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
-const dbUrl = 'mongodb://heroku_k785s0v0:e2f7qsoc33hr1f43ktf12946t7@ds145456.mlab.com:45456/heroku_k785s0v0';
+
+// Use dotenv to access Heroku config vars
+require('dotenv').config();
 
 // Connect to remote MongoDB
-mongoose.connect(dbUrl, { useNewUrlParser: true }).then(() => { console.log('Connected to MongoDB'); },
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).then(() => { console.log('Connected to MongoDB'); },
   err => { console.log(err) }
 );
 
