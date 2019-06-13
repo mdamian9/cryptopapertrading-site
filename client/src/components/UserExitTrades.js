@@ -40,7 +40,7 @@ class UserExitTrades extends Component {
     };
 
     componentDidMount = () => {
-        axios.get('/exit-trades').then(res => {
+        axios.get('/api/exit-trades').then(res => {
             this.setState({
                 trades: res.data
             });
@@ -60,7 +60,7 @@ class UserExitTrades extends Component {
     };
 
     deleteTrade = () => {
-        const promises = [axios.delete(`/exit-trades/${this.state.deleteTrade._id}`), axios.get('/exit-trades')];
+        const promises = [axios.delete(`/api/exit-trades/${this.state.deleteTrade._id}`), axios.get('/api/exit-trades')];
         Promise.all(promises).then(values => {
             console.log(values[0].data);
             this.setState(prevState => ({

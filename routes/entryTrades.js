@@ -5,7 +5,7 @@ const db_EntryTrades = require('../models/EntryTradeModel');
 router.get('/entry-trades', (req, res) => {
     db_EntryTrades.find().then(trades => {
         res.statusCode = 200;
-        res.send(trades);
+        res.json(trades);
     }).catch(err => {
         console.log(err);
     });

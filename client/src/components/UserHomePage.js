@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import NavbarComponent from './Navbar';
+import TweetsComponent from './TweetsComponent';
 
 class UserHomePage extends Component {
 
@@ -10,14 +11,14 @@ class UserHomePage extends Component {
         this.state = {
             cryptoTweets: [],
             bitcoinTweets: [],
-            searchTag: '',
-            searchTweets: []
+            keyphrase: '',
+            searchTweets: null
         };
     };
 
     componentDidMount = () => {
         console.log('home page mounted');
-        Promise.all([axios.get('/tweets/cryptocurrency'), axios.get('/tweets/bitcoin')]).then(values => {
+        Promise.all([axios.get('/api/tweets/cryptocurrency'), axios.get('/api/tweets/bitcoin')]).then(values => {
             this.setState({
                 cryptoTweets: values[0].data,
                 bitcoinTweets: values[1].data
@@ -29,16 +30,20 @@ class UserHomePage extends Component {
 
     searchTweets = event => {
         event.preventDefault();
-        // axios.get(`/tweets/${this.state.searchTag}`).then(res => {
-        //     console.log(res.data);
-        //     // this.setState({
-        //     //     searchTweets: res.data
-        //     // });
-        // });
-        console.log('search tweets');
+        const keyphrase = event.target.searchTweets.value;
+        axios.get(`/tweets/${keyphrase}`).then(res => {
+            this.setState({
+                keyphrase: keyphrase,
+                searchTweets: res.data
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+        event.target.reset();
     };
 
     render = () => {
+        console.log(this.state);
         return (
             <div style={{ color: 'white' }} className="full-div">
                 <NavbarComponent />
@@ -70,9 +75,10 @@ class UserHomePage extends Component {
                         </Col>
                     </Row>
                     <br />
-                    <Row className="justify-content-center text-center">
+                    <Row className="justify-content-center">
                         <Col xs="5" className="w-outline">
                             Tweets Hashtaged #cryptocurrency
+                            <TweetsComponent keyphrase={this.state.keyphrase} tweets={this.state.searchTweets}/>
                         </Col>
                         &ensp;
                         <Col xs='5' className="w-outline">
@@ -80,12 +86,12 @@ class UserHomePage extends Component {
                         </Col>
                     </Row>
                     <br />
-                    <Row className="text-center">
+                    <Row>
                         <Col xs="6" className="w-outline mx-auto">
                             <Form inline style={{ padding: '10px' }} onSubmit={this.searchTweets}>
                                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                                     <Label for="search-tweets" className="mr-sm-2">Search tweets:</Label>
-                                    <Input type="text" name="searchTweets" id="search-tweets" placeholder="Enter keyword(s)" />
+                                    <Input type="text" name="searchTweets" id="search-tweets" placeholder="Enter keyword(s)" required />
                                 </FormGroup>
                                 <Button>Search</Button>
                             </Form>

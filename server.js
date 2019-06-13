@@ -29,9 +29,9 @@ app.use(bodyParser.json());
 
 // Use API routes
 app.use('/', indexRouter);
-app.use('/', entryTradesRouter);
-app.use('/', exitTradesRouter);
-app.use('/', twitterRouter);
+app.use('/api', entryTradesRouter);
+app.use('/api', exitTradesRouter);
+app.use('/api', twitterRouter);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {

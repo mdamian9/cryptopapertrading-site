@@ -36,7 +36,7 @@ class NewEntryTradeForm extends Component {
         };
         const totalCoins = (parseFloat(this.state.totalInvestment) - (parseFloat(this.state.totalInvestment) * tradeFee)) / parseFloat(this.state.coinBuyPrice);
         const finalEntryPrice = parseFloat(this.state.totalInvestment) / totalCoins;
-        axios.post('/entry-trades', {
+        axios.post('/api/entry-trades', {
             exchange: this.state.exchangeName,
             tradingPair: this.state.tradingPair,
             totalInvestment: parseFloat(this.state.totalInvestment),
