@@ -13,18 +13,20 @@ const Twitter = new Twit({
 
 router.get('/tweets/:hashtag', (req, res) => {
     const query = {
-        q: `${req.params.hashtag} since:2018-07-11`,
+        q: `${req.params.hashtag} since:2016-07-11`,
         lang: 'en',
         result_type: 'popular',
-        count: 10
+        count: 100
     };
     Twitter.get('search/tweets', query, (err, data, resp) => {
         let tweets = [];
         data.statuses.forEach(tweet => {
             tweets.push({
+                id: tweet.id_str,
                 text: tweet.text,
                 author: tweet.user.name,
                 twitterHandle: tweet.user.screen_name,
+                profileLink: `https://twitter.com/${tweet.user.screen_name}`,
                 profilePic: tweet.user.profile_image_url_https,
                 date: tweet.created_at,
                 link: `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
