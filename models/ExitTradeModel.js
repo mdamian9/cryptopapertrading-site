@@ -40,6 +40,4 @@ const ExitTradeSchema = new Schema({
     }
 });
 
-const ExitTrade = mongoose.model('ExitTrade', ExitTradeSchema);
-
-module.exports = ExitTrade;
+module.exports = mongoose.model('ExitTrade', ExitTradeSchema);

@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).then(() => 
 );
 
 // Initialize API routes
-const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const entryTradesRouter = require('./routes/entryTrades');
 const exitTradesRouter = require('./routes/exitTrades');
 const twitterRouter = require('./routes/twitterRouter');
@@ -27,11 +27,48 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Set up CORS handling
+app.use((req, res, next) => {
+  // Add headers to adjust response with the following headers to handle CORS errors
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  // If browser sends OPTIONS request, set header 
+  if (req.method === 'OPTIONS') {
+    // Set header to let browser know what requests it may send
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    return res.status(200).json({})
+  };
+  // Send request to next middleware (our routes in this case)
+  next();
+});
+
 // Use API routes
-app.use('/', indexRouter);
-app.use('/api', entryTradesRouter);
-app.use('/api', exitTradesRouter);
-app.use('/api', twitterRouter);
+app.use('/api/', usersRouter);
+app.use('/api/entry-trades', entryTradesRouter);
+app.use('/api/exit-trades', exitTradesRouter);
+app.use('/api/tweets', twitterRouter);
+
+// Handle all requests that did not reach a route (error handling)
+app.use((req, res, next) => {
+  // Create new error and pass in error message
+  const err = new Error('Not found');
+  // Set status
+  err.status = 404;
+  // Forward error request to next middleware handler
+  next(err);
+});
+
+// Handle errors from above / failed DB operations
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({
+    error: {
+      message: err.message
+    }
+  });
+});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {

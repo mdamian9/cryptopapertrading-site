@@ -13,11 +13,15 @@ class SignupForm extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+
+        console.log(this.state);
+
         // Clear form fields
-        document.getElementById("signup-form").reset();
+        event.target.reset();
         // Reset state
         this.setState({
             email: '',
+            username: '',
             password: ''
         });
     };
@@ -28,13 +32,19 @@ class SignupForm extends Component {
                 <FormGroup>
                     <Label for="signup-email">Email:</Label>
                     <Input type="email" name="email" id="signup-email"
-                        placeholder="Enter your email" onChange={this.handleChange}
+                        placeholder="Enter your email" onChange={this.handleChange} required
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="signup-username">Username:</Label>
+                    <Input type="text" name="username" id="signup-username"
+                        placeholder="Enter a username" onChange={this.handleChange} required
                     />
                 </FormGroup>
                 <FormGroup>
                     <Label for="signup-password">Password:</Label>
                     <Input type="password" name="password" id="signup-password"
-                        placeholder="Enter your password" onChange={this.handleChange}
+                        placeholder="Enter your password" onChange={this.handleChange} required
                     />
                 </FormGroup>
                 <Button color="primary">Sign Up</Button>

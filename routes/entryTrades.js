@@ -2,33 +2,32 @@ const express = require('express');
 const router = express.Router();
 const db_EntryTrades = require('../models/EntryTradeModel');
 
-router.get('/entry-trades', (req, res) => {
+router.get('/', (req, res) => {
     db_EntryTrades.find().then(trades => {
-        res.statusCode = 200;
-        res.json(trades);
+        res.status(200).json(trades);
     }).catch(err => {
         console.log(err);
     });
 });
 
-router.post('/entry-trades', (req, res) => {
+router.post('/', (req, res) => {
     const newEntryTrade = req.body;
     db_EntryTrades.create(newEntryTrade).then(trade => {
-        res.statusCode = 201;
-        res.send(`Created new entry trade: ${trade}`);
+        res.status(201).json({
+            message: 'Successfully created new entry trade.',
+            newTrade: trade
+        });
     }).catch(err => {
         console.log(err);
     });
 });
 
-router.put('/entry-trades', (req, res) => {
-    res.send('Put not supported');
-});
-
-router.delete('/entry-trades/:tradeId', (req, res) => {
+router.delete('/:tradeId', (req, res) => {
     db_EntryTrades.findByIdAndDelete(req.params.tradeId).then(trade => {
-        res.statusCode = 200;
-        res.send(`Deleted ${trade}`);
+        res.status(200).json({
+            message: 'Successfully deleted entry trade.',
+            deletedTrade: trade
+        });
     }).catch(err => {
         console.log(err);
     });

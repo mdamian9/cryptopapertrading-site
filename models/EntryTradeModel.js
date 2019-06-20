@@ -40,6 +40,4 @@ const EntryTradeSchema = new Schema({
     }
 });
 
-const EntryTrade = mongoose.model('EntryTrade', EntryTradeSchema);
-
-module.exports = EntryTrade;
+module.exports = mongoose.model('EntryTrade', EntryTradeSchema);

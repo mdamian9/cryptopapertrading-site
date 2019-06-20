@@ -7,7 +7,7 @@ import {
 const RenderTweet = ({ tweet }) => {
     return (
         <div>
-            <Card style={{ color: 'black', marginBottom: '5px', padding: 'none', backgroundColor: 'lightblue' }}>
+            <Card style={{ color: 'black', marginBottom: '5px', backgroundColor: 'lightblue' }}>
                 <CardBody>
                     <CardTitle><img src={tweet.profilePic} alt='profilePic' />&ensp;<b>{tweet.author}</b></CardTitle>
                     <CardSubtitle>

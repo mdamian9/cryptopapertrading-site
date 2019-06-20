@@ -11,11 +11,11 @@ const Twitter = new Twit({
     strictSSL: true,     // optional - requires SSL certificates to be valid.
 });
 
-router.get('/tweets/:hashtag', (req, res) => {
+router.get('/:hashtag', (req, res) => {
     const query = {
         q: `${req.params.hashtag} since:2016-07-11`,
         lang: 'en',
-        result_type: 'popular',
+        result_type: 'mixed',
         count: 100
     };
     Twitter.get('search/tweets', query, (err, data, resp) => {
@@ -32,21 +32,8 @@ router.get('/tweets/:hashtag', (req, res) => {
                 link: `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
             });
         });
-        res.statusCode = 200;
-        res.json(tweets);
+        res.status(200).json(tweets);
     });
-});
-
-router.post('/tweets/:hashtag', (req, res) => {
-    res.send(`POST not supported for /tweets/:hashtag`);
-});
-
-router.put('/tweets/:hashtag', (req, res) => {
-    res.send(`PUT not supported for /tweets/:hashtag`);
-});
-
-router.delete('/tweets/:hashtag', (req, res) => {
-    res.send(`DELETE not supported for /tweets/:hashtag`);
 });
 
 module.exports = router;
