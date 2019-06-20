@@ -51,6 +51,17 @@ app.use('/api/entry-trades', entryTradesRouter);
 app.use('/api/exit-trades', exitTradesRouter);
 app.use('/api/tweets', twitterRouter);
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+};
+
+// Send every request to the React app
+// Define any API routes before this runs
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
+});
+
 // Handle all requests that did not reach a route (error handling)
 app.use((req, res, next) => {
   // Create new error and pass in error message
@@ -68,17 +79,6 @@ app.use((err, req, res, next) => {
       message: err.message
     }
   });
-});
-
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-};
-
-// Send every request to the React app
-// Define any API routes before this runs
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
 app.listen(PORT, () => {
