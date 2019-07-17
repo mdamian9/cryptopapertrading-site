@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const logger = require('morgan'); // used to see requests
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -24,8 +23,8 @@ const twitterRouter = require('./routes/twitterRouter');
 app.use(logger('dev'));
 
 // Setting up bodyParser to use json and set it to req.body
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Set up CORS handling
 app.use((req, res, next) => {
@@ -39,7 +38,7 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     // Set header to let browser know what requests it may send
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    return res.status(200).json({})
+    return res.status(200).json({});
   };
   // Send request to next middleware (our routes in this case)
   next();
@@ -55,12 +54,6 @@ app.use('/api/tweets', twitterRouter);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 };
-
-// Send every request to the React app
-// Define any API routes before this runs
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/build/index.html'));
-});
 
 // Handle all requests that did not reach a route (error handling)
 app.use((req, res, next) => {
@@ -79,6 +72,12 @@ app.use((err, req, res, next) => {
       message: err.message
     }
   });
+});
+
+// Send every request to the React app
+// Define any API routes before this runs
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
 app.listen(PORT, () => {
