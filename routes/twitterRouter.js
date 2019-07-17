@@ -19,6 +19,12 @@ router.get('/:hashtag', (req, res) => {
         count: 100
     };
     Twitter.get('search/tweets', query, (err, data, resp) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Error with Twitter request',
+                error: err
+            });
+        };
         let tweets = [];
         data.statuses.forEach(tweet => {
             tweets.push({

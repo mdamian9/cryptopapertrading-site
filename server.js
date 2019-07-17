@@ -12,6 +12,7 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).then(() => { console.log('Connected to MongoDB'); },
   err => { console.log(err) }
 );
+mongoose.set('useCreateIndex', true);
 
 // Initialize API routes
 const usersRouter = require('./routes/users');
