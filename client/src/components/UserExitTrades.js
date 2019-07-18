@@ -60,7 +60,7 @@ class UserExitTrades extends Component {
     };
 
     deleteTrade = () => {
-        const promises = [axios.delete(`/api/exit-trades/${this.state.deleteTrade._id}`), axios.get('/api/exit-trades')];
+        const promises = [axios.delete(`/exit-trades/${this.state.deleteTrade._id}`), axios.get('/exit-trades')];
         Promise.all(promises).then(values => {
             console.log(values[0].data);
             this.setState(prevState => ({

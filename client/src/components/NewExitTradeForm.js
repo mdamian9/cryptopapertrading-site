@@ -48,7 +48,7 @@ class NewEntryTradeForm extends Component {
             finalExitPrice = finalExitPrice.toFixed(8);
         };
         // POST new exit trade to MongoDB, log response to console
-        axios.post('/api/exit-trades', {
+        axios.post('/exit-trades', {
             exchange: this.state.exchangeName,
             tradingPair: this.state.tradingPair,
             coinName: this.state.coinName,

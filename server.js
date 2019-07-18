@@ -46,10 +46,10 @@ app.use((req, res, next) => {
 });
 
 // Use API routes
-app.use('/api/', usersRouter);
-app.use('/api/entry-trades', entryTradesRouter);
-app.use('/api/exit-trades', exitTradesRouter);
-app.use('/api/tweets', twitterRouter);
+app.use('/users', usersRouter);
+app.use('/entry-trades', entryTradesRouter);
+app.use('/exit-trades', exitTradesRouter);
+app.use('/tweets', twitterRouter);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {

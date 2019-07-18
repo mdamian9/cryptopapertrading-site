@@ -18,7 +18,7 @@ class UserHomePage extends Component {
 
     componentDidMount = () => {
         console.log('home page mounted');
-        Promise.all([axios.get('/api/tweets/cryptocurrency'), axios.get('/api/tweets/bitcoin')]).then(values => {
+        Promise.all([axios.get('/tweets/cryptocurrency'), axios.get('/tweets/bitcoin')]).then(values => {
             this.setState({
                 cryptoTweets: values[0].data,
                 bitcoinTweets: values[1].data
@@ -31,7 +31,7 @@ class UserHomePage extends Component {
     searchTweets = event => {
         event.preventDefault();
         const keyphrase = event.target.searchTweets.value;
-        axios.get(`/api/tweets/${keyphrase}`).then(res => {
+        axios.get(`/tweets/${keyphrase}`).then(res => {
             this.setState({
                 keyphrase: keyphrase,
                 searchTweets: res.data
