@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 // EntryTrade instance to read and write database records in MongoDB
 const EntryTrade = require('../models/EntryTradeModel');
@@ -16,8 +17,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const newEntryTrade = req.body;
-    EntryTrade.create(newEntryTrade).then(trade => {
+    const newEntryTrade = new EntryTrade({
+        _id: new mongoose.Types.ObjectId(),
+        exchange: req.body.exchange,
+        tradingPair: req.body.tradingPair,
+        totalInvestment: req.body.totalInvestment,
+        coinName: req.body.coinName,
+        coinBuyPrice: req.body.coinBuyPrice,
+        totalCoins: req.body.totalCoins,
+        finalEntryPrice: req.body.finalEntryPrice,
+        dateLogged: req.body.dateLogged
+    });
+    newEntryTrade.save().then(trade => {
         res.status(201).json({
             message: 'Successfully created new entry trade.',
             newTrade: trade

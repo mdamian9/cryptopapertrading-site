@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 // ExitTrade instance to read and write database records in MongoDB
 const ExitTrade = require('../models/ExitTradeModel');
@@ -16,8 +17,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const newExitTrade = req.body;
-    ExitTrade.create(newExitTrade).then(trade => {
+    const newExitTrade = new ExitTrade({
+        _id: new mongoose.Types.ObjectId(),
+        exchange: req.body.exchange,
+        tradingPair: req.body.tradingPair,
+        coinName: req.body.coinName,
+        totalCoins: req.body.totalCoins,
+        coinSellPrice: req.body.coinSellPrice,
+        totalDivestment: req.body.totalDivestment,
+        finalExitPrice: req.body.finalExitPrice,
+        dateLogged: req.body.dateLogged
+    });
+    newExitTrade.save().then(trade => {
         res.status(201).json({
             message: 'Successfully created new exit trade.',
             newTrade: trade
