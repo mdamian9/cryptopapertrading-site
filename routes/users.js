@@ -45,4 +45,44 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
+router.post('/login', (req, res, next) => {
+    let dbQuery, userKey, secondaryKey;
+    if (req.body.username) {
+        dbQuery = { username: req.body.username }, userKey = 'username', secondaryKey = 'email';
+    } else {
+        dbQuery = { email: req.body.email }, userKey = 'email', secondaryKey = 'username';
+    };
+    User.findOne(dbQuery).then(user => {
+        if (!user) {
+            return res.status(404).json({
+                message: `No user found using ${userKey}, try logging in with ${secondaryKey}`
+            });
+        };
+        bcrypt.compare(req.body.password, user.password, (err, result) => {
+            if (err) {
+                return res.status(401).json({ message: 'Auth failed' });
+            };
+            if (result) {
+                const token = jwt.sign(
+                    {
+                        email: user.email,
+                        userId: user._id
+                    },
+                    process.env.JWT_KEY,
+                    { expiresIn: '1hr' }
+                );
+                return res.status(200).json({
+                    message: `Auth successful using ${userKey}`,
+                    token: token
+                });
+            };
+            res.status(401).json({ message: 'Auth failed' });
+        });
+    }).catch(err => {
+        res.status(500).json({
+            error: err
+        });
+    });
+});
+
 module.exports = router;
