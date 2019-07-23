@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const checkAuth = require('../middleware/checkAuth');
 
 // ExitTrade instance to read and write database records in MongoDB
 const ExitTrade = require('../models/ExitTradeModel');
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', checkAuth, (req, res) => {
     const newExitTrade = new ExitTrade({
         _id: new mongoose.Types.ObjectId(),
         exchange: req.body.exchange,
@@ -41,7 +42,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/:tradeId', (req, res) => {
+router.delete('/:tradeId', checkAuth, (req, res) => {
     ExitTrade.findByIdAndDelete(req.params.tradeId).then(trade => {
         res.status(200).json({
             message: 'Successfully deleted exit trade.',

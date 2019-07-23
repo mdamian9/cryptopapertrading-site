@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const checkAuth = require('../middleware/checkAuth');
 
 // EntryTrade instance to read and write database records in MongoDB
 const EntryTrade = require('../models/EntryTradeModel');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     EntryTrade.find().then(trades => {
         res.status(200).json(trades);
     }).catch(err => {
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', checkAuth, (req, res, next) => {
     const newEntryTrade = new EntryTrade({
         _id: new mongoose.Types.ObjectId(),
         exchange: req.body.exchange,
@@ -41,7 +42,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/:tradeId', (req, res) => {
+router.delete('/:tradeId', checkAuth, (req, res, next) => {
     EntryTrade.findByIdAndDelete(req.params.tradeId).then(trade => {
         res.status(200).json({
             message: 'Successfully deleted entry trade.',
