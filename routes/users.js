@@ -46,16 +46,16 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    let dbQuery, userKey, secondaryKey;
+    let dbQuery
     if (req.body.username) {
-        dbQuery = { username: req.body.username }, userKey = 'username', secondaryKey = 'email';
+        dbQuery = { username: req.body.username };
     } else {
-        dbQuery = { email: req.body.email }, userKey = 'email', secondaryKey = 'username';
+        dbQuery = { email: req.body.email };
     };
     User.findOne(dbQuery).then(user => {
         if (!user) {
             return res.status(404).json({
-                message: `No user found using ${userKey}, try logging in with ${secondaryKey}`
+                message: 'Auth failed - no user found'
             });
         };
         bcrypt.compare(req.body.password, user.password, (err, result) => {
@@ -72,11 +72,23 @@ router.post('/login', (req, res, next) => {
                     { expiresIn: '1hr' }
                 );
                 return res.status(200).json({
-                    message: `Auth successful using ${userKey}`,
+                    message: 'Auth successful',
                     token: token
                 });
             };
             res.status(401).json({ message: 'Auth failed' });
+        });
+    }).catch(err => {
+        res.status(500).json({
+            error: err
+        });
+    });
+});
+
+router.delete('/:userId', (req, res, next) => {
+    User.deleteOne({_id: req.params.userId}).then(result => {
+        res.status(200).json({
+            message: 'User successfully deleted'
         });
     }).catch(err => {
         res.status(500).json({
