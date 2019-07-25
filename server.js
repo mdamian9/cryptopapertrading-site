@@ -68,11 +68,13 @@ app.use((req, res, next) => {
 
 // Handle errors from above / failed DB operations
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).json({
-    error: {
-      message: err.message
-    }
-  });
+  if (err) {
+    res.status(err.status || 500).json({
+      error: {
+        message: err.message
+      }
+    });
+  };
 });
 
 // Send every request to the React app
