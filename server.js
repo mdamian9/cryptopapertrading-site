@@ -56,26 +56,28 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 };
 
-// Handle all requests that did not reach a route (error handling)
-app.use((req, res, next) => {
-  // Create new error and pass in error message
-  const err = new Error('Not found');
-  // Set status
-  err.status = 404;
-  // Forward error request to next middleware handler
-  next(err);
-});
+// Adust error handling - when deployed to heroku response is error json
 
-// Handle errors from above / failed DB operations
-app.use((err, req, res, next) => {
-  if (err) {
-    res.status(err.status || 500).json({
-      error: {
-        message: err.message
-      }
-    });
-  };
-});
+// // Handle all requests that did not reach a route (error handling)
+// app.use((req, res, next) => {
+//   // Create new error and pass in error message
+//   const err = new Error('Not found');
+//   // Set status
+//   err.status = 404;
+//   // Forward error request to next middleware handler
+//   next(err);
+// });
+
+// // Handle errors from above / failed DB operations
+// app.use((err, req, res, next) => {
+//   if (err) {
+//     res.status(err.status || 500).json({
+//       error: {
+//         message: err.message
+//       }
+//     });
+//   };
+// });
 
 // Send every request to the React app
 // Define any API routes before this runs
