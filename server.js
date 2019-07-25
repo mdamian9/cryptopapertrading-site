@@ -51,11 +51,6 @@ app.use('/entry-trades', entryTradesRouter);
 app.use('/exit-trades', exitTradesRouter);
 app.use('/tweets', twitterRouter);
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-};
-
 // Handle all requests that did not reach a route (error handling)
 app.use((req, res, next) => {
   // Create new error and pass in error message
@@ -74,6 +69,11 @@ app.use((err, req, res, next) => {
     }
   });
 });
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+};
 
 // Send every request to the React app
 // Define any API routes before this runs
