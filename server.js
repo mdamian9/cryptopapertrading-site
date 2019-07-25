@@ -58,8 +58,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, './client/build/index.html'));
+  next();
 });
 
 // Handle all requests that did not reach a route (error handling)
